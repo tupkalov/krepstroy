@@ -1,0 +1,34 @@
+@import fonts
+
+// colors
+$backgroundColor    = white
+$grayColor          = #e9e9e9
+$darkGrayColor      = #dadada
+$darkColor          = #5a739b
+$brightColor        = #629dd9
+$lightColor         = #a0c6ec
+$activeColor        = #ff923a
+
+$fontColor          = #000
+$grayFontColor 		= white
+$darkFontColor      = #5a739b
+$lightFontColor     = #a0c6ec
+$disableFontColor   = #a9a9a9
+$activeFontColor    = #ff923a
+
+body
+	font: $fontSize $defaultFont
+	margin: 0
+	
+.__wrapper
+	position relative
+	margin-left auto
+	margin-right auto
+
+	@media screen and (min-width: 1000px)
+		width 960px
+	@media screen and (min-width: 1200px)
+		width 1100px
+
+@import header
+@import basket

@@ -1,0 +1,87 @@
+.header
+	margin : 0
+	background-color: $grayColor
+	
+	&__wrapper
+		height 193px
+		position relative
+		
+
+.logo
+	background 	: url(/img/logo.png) no-repeat
+	height		: 50px
+	width		: 230px 
+	margin-left	: 0px
+	margin-top	: 98px
+	float		: left
+	
+.nav
+	boldFont() 
+	white-space nowrap
+	display flex
+	flex-direction row
+	flex-wrap nowrap
+	justify-content space-between
+	width 460px
+	margin-left : 300px
+	position absolute
+	bottom 20px
+	
+	&__link
+		display 		: inline-block
+		> a
+			text-decoration	: none
+			color 			: $darkFontColor
+		
+		&_current
+			> a
+				color $disableFontColor
+		
+
+.phone
+	position absolute
+	right 0px
+	bottom 20px
+	color $darkFontColor
+	&__pre
+		defaultFont()
+	&__main
+		headerFont()
+
+
+$searchHeight = 27px	
+.search
+	width 300px
+	background-color $darkGrayColor
+	border-radius 6px
+	line-height $searchHeight
+	position: relative
+	top 20px
+	
+	&__form
+		&__input
+			padding: 0 $searchHeight+5px 0 10px
+			
+			&::-webkit-input-placeholder
+				color: $grayFontColor
+
+		&__input
+		&__submit
+			background-color transparent
+			border 0
+			font inherit
+				
+			&:focus
+				outline none
+			
+		&__submit
+			font-size 0
+			background transparent url('/img/search.png') center no-repeat
+			padding 0
+			width $searchHeight
+			height $searchHeight
+			position: absolute
+			z-index 2
+			right 2px
+			top 0px
+		
