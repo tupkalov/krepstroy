@@ -48,4 +48,9 @@ testftp/
 
 #compiled css
 /makeup/css/
-/makeup/js/all.js
+
+#compiled js
+/makeup/js/all.js*
+
+#compiled templates
+/makeup/*.html
