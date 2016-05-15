@@ -47,5 +47,5 @@ layouts/
 testftp/
 
 #compiled css
-/makeup/style.css
-/makeup/style.css*
+/makeup/css/
+/makeup/js/all.js
