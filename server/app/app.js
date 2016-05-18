@@ -5,6 +5,8 @@ exports.start = config => {
 
 	let app = new express();
 
+	require('./static')(app, config);
+
 	app.set('view engine', 'pug');
 	app.set('views', '../views');
 
