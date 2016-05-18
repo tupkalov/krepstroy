@@ -1,0 +1,1 @@
+global.AppError = require('./AppError');
