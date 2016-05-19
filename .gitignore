@@ -50,7 +50,8 @@ testftp/
 /makeup/css/
 
 #compiled js
-/makeup/js/all.js*
+/makeup/js/app.js*
 
 #compiled templates
 /makeup/*.html
+/ftp
