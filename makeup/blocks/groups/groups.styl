@@ -1,0 +1,91 @@
+$groupsItemHeight = 45px
+groupsItem()
+	border-radius 5px
+	height $groupsItemHeight
+	line-height $groupsItemHeight
+	padding 0 10px
+	text-decoration none
+	display block
+	position relative
+	
+
+.groups
+	width $sidebarWidth
+	smallFont()
+	
+	&__item
+		margin-bottom 5px
+		
+		&__sub
+			height 0
+			opacity 0
+			transition opacity .2s
+			position relative
+			overflow hidden
+			
+			^[1]_active &
+				height auto
+				opacity 1
+
+.groups-item
+	background-color $grayColor
+	color $brightColor
+	fill $brightColor
+	groupsItem()
+
+	&_active
+		background-color $brightColor
+		color $grayColor
+		fill $grayColor
+	
+	&__ico
+		border-radius 100%
+		background-color $brightColor
+		width $groupsItemHeight*.7
+		height $groupsItemHeight*.7
+		margin-right 10px
+		
+		^[0]_active &
+			background-color $grayColor
+			
+
+	&__ico		
+	&__name
+		display inline-block
+		vertical-align middle
+		line-height normal
+		
+	&__name
+		padding-top 5px
+
+	&__expand
+		width 1em
+		height 1em
+		position absolute
+		right 10px
+		top 50%
+		margin-top -.5em
+		
+		^[0]_active &
+			transform rotate(90deg)
+		
+.groups-sub
+	margin-top 5px	
+
+	&__item
+		margin-bottom 5px
+		
+		&:last-child
+			margin-bottom 0
+
+.groups-subitem
+	background-color $lightColor
+	groupsItem()
+	
+	&__name
+		display inline-block
+		vertical-align middle
+		line-height normal
+		padding-top 5px
+		color $grayFontColor
+		

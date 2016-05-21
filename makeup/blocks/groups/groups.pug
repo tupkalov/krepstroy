@@ -1,0 +1,19 @@
+- var groups = [{"name":"Дюбели, Гвозди","list":["Дюбель-гвоздь","Рамный дюбель","Гвозди"]},{"name":"Дюбели для теплоизоляции","list":["Дюбель-гвоздь","Рамный дюбель","Гвозди"]},{"name":"Саморезы","list":["Дюбель-гвоздь","Рамный дюбель","Гвозди"]},{"name":"Болты, гайки, шпильки, винты","list":["Дюбель-гвоздь","Рамный дюбель","Гвозди"]},{"name":"Строительный инструмент","list":["Дюбель-гвоздь","Рамный дюбель","Гвозди"]},{"name":"Профиль фасадный","list":["Дюбель-гвоздь","Рамный дюбель","Гвозди"]},{"name":"Пены, герметики","list":["Дюбель-гвоздь","Рамный дюбель","Гвозди"]},{"name":"Анкеры","list":["Дюбель-гвоздь","Рамный дюбель","Гвозди"]}];
+
+.groups
+	each val in groups
+		.groups__item
+			a.groups-item(href=`#${val.name}`)
+				.groups-item__ico
+				.groups-item__name= val.name
+				svg.groups-item__expand
+					use(xlink:href="/img/icons.svg#icon-chevron-thin-right")
+
+			.groups__item__sub
+				.groups__item__sub__wrapper
+					.groups-sub
+						each sub in val.list
+							.groups-sub__item
+								a.groups-subitem(href=`#${sub}`)
+									.groups-subitem__name= sub
+				

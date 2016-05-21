@@ -32,8 +32,6 @@ gulp.task('scripts', function() {
         .on('error', function (err) { console.error(err); })
         .pipe(source('app.js'))
         .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('js'))
         .pipe(livereload());
 
@@ -52,10 +50,8 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {  
     gulp.src(['styles/index.styl'])
         .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(stylus({
-        	compress : false
-    	}))
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(stylus())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('css'))
         .pipe(livereload());
@@ -84,6 +80,7 @@ gulp.task('watch', function() {
 
     gulp.watch('js/src/**', ['scripts'])
     gulp.watch('styles/**', ['styles'])
+    gulp.watch('blocks/**', ['styles', 'scripts'])
     gulp.watch('templates/**', ['templates'])
 
 });
