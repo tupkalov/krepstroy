@@ -1,18 +1,10 @@
 const express = require('express');
+const webserver = require('./webserver');
+const database = require('./database');
 
 exports.start = config => {
 	if(!config) throw new AppError('noConfig');
 
-	let app = new express();
-
-	require('./static')(app, config);
-
-	app.set('view engine', 'pug');
-	app.set('views', '../views');
-
-	require('../middleware')(app);
-
-	app.listen(config.port, () => 
-		console.log(`Server started on ${config.port}`)
-	)
+	webserver.start(config);
+	database.start(config);
 }	
