@@ -10,6 +10,9 @@ export class Groups{
 	constructor (el) {
 		this.el = el
 		$(el).on('click', '.' + __itemClass, function(e){
+			if($(e.target).closest(`.${itemClass}`).length === 0)
+				return;
+
 			$(e.currentTarget)
 				.toggleClass(__itemActiveClass)
 				.find('.' + itemClass)
@@ -21,6 +24,8 @@ export class Groups{
 					    direction: "vertical"
 					});
 				}, 100)
+
+			e.preventDefault();
 		})
 	}
 

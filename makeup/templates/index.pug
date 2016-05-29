@@ -2,31 +2,25 @@ doctype html
 html
 	include ./blocks/head.pug
 	body
-		.basket
-			.basket__wrapper.__wrapper
-		.basket__box
-			.basket__box__logo
-			.basket__box__text в корзине 17 товаров
 
-	include ./blocks/header.pug
-	include ../blocks/banner/banner.pug
+		include ../blocks/basket/basket
 
-	.main
-		.main__wrapper.__wrapper
-			.sidebar
-				include ../blocks/groups/groups.pug
+		include ./blocks/header.pug
+		include ../blocks/banner/banner.pug
 
-			.main-container
-				.text-block
-					h1 О компании
-					p Наша компания работает для строительных организаций и потребителей хозтоваров. Основная специализация это:   Профили фасадные пены, герметики, хозтовары, а также сопутствующие категории товаров (пленки, сетки, скотч).
-					p Вы можете сами сформировать ваш заказ на нашем сайте или обратиться к специалистам по телефонам +7(905)210-10-05, а также по электронным адресам : krep.spb@mail.ru
+		.main
+			.main__wrapper.__wrapper
+				.main-container
+					.block.block_tiles
+						include ../blocks/tiles/tiles.pug
 
-				.vendors
-					img(src='/img/reyher.jpg')
-					img(src='/img/wasi.jpg')
-					img(src='/img/fisher.jpg')
-					img(src='/img/norma.jpg')
-					img(src='/img/mungo.jpg')
-					img(src='/img/bralo.jpg')
-					img(src='/img/fisher.jpg')
+					.maintextblock
+						.block.block_about
+							h1 О компании
+							p Наша компания работает для строительных организаций и потребителей хозтоваров. Основная специализация это:   Профили фасадные пены, герметики, хозтовары, а также сопутствующие категории товаров (пленки, сетки, скотч).
+							p Вы можете сами сформировать ваш заказ на нашем сайте или обратиться к специалистам по телефонам +7(905)210-10-05, а также по электронным адресам : krep.spb@mail.ru
+
+						.block.block_news
+							include ./blocks/news.pug
+
+		include blocks/footer
