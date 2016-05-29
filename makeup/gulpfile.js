@@ -80,7 +80,7 @@ gulp.task('watch', function() {
 
     gulp.watch('js/src/**', ['scripts'])
     gulp.watch('styles/**', ['styles'])
-    gulp.watch('blocks/**', ['styles', 'scripts'])
+    gulp.watch('blocks/**', ['styles', 'scripts', 'templates'])
     gulp.watch('templates/**', ['templates'])
 
 });

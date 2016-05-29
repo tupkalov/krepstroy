@@ -1,6 +1,11 @@
 @import fonts
 @import colors
 
+$xxs= 600px
+$xs = 800px
+$sm = 1000px
+$md = 1200px
+
 body
 	font: $fontSize $defaultFont
 	color: $fontColor
@@ -8,18 +13,27 @@ body
 	
 .__wrapper
 	position relative
-	margin-left auto
-	margin-right auto
+	margin-left 20px
+	margin-right 20px
+			
 
-	@media screen and (min-width: 1000px)
+	@media screen and (min-width: $sm)
 		width 960px
-	@media screen and (min-width: 1200px)
+		margin-left auto
+		margin-right auto
+		
+	@media screen and (min-width: $md)
 		width 1100px
 
 @import header
 @import basket
 @import '../blocks/banner/banner'
 
+a
+	color $darkFontColor
+
+	&:hover
+		color $lightFontColor
 
 .main
 	margin 80px 0 0 0
@@ -37,34 +51,38 @@ $sidebarWidth = 260px
 	flex-grow 1
 	position relative
 	
-.text-block
+.block
 	textFont()
 	
 h1
 	headerFont()
 		
-.vendors
-	white-space nowrap
-	position absolute
-	overflow hidden
-	width 100%
-	
-	> img
-		margin-right 5px
-		
-		&:last-child
-			margin-right 0
-			
-	&::after
-		content ''
-		display block
-		position absolute
-		right 0
-		top 0
-		height 100%
-		width 70%
-		background-image linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1))
-		
-		
 
 @import '../blocks/groups/groups'
+@import '../blocks/tiles/tiles'
+
+
+.maintextblock
+	display flex
+	
+	> .block_about
+		width 70%
+		padding-right 40px
+		
+	> .block_news
+		width 30%
+		
+//news
+.news
+	margin-bottom 10px
+	
+	&__date
+		color $disableFontColor
+		display inline
+		margin-right 3px
+	&__title
+		display inline
+		
+	&__text
+		smallFont()
+		

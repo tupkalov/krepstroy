@@ -15,6 +15,9 @@
 	margin-top	: 98px
 	float		: left
 	
+	@media screen and (max-width: $sm)
+		margin-top 45px
+	
 .nav
 	boldFont() 
 	white-space nowrap
@@ -36,6 +39,10 @@
 		&_current
 			> a
 				color $disableFontColor
+				
+
+	@media screen and (max-width: $sm)
+		margin-left 0
 		
 
 .phone
