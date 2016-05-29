@@ -1,15 +1,18 @@
 @import fonts
 @import colors
 
-$xxs= 600px
-$xs = 800px
+$xxxs = 400px
+$xxs = 500px
+$xs = 700px
 $sm = 1000px
 $md = 1200px
 
 body
 	font: $fontSize $defaultFont
 	color: $fontColor
+	background-color: $grayColor
 	margin: 0
+	min-width 320px
 	
 .__wrapper
 	position relative
@@ -26,7 +29,7 @@ body
 		width 1100px
 
 @import header
-@import basket
+@import '../blocks/basket'
 @import '../blocks/banner/banner'
 
 a
@@ -36,7 +39,9 @@ a
 		color $lightFontColor
 
 .main
-	margin 80px 0 0 0
+	background-color $backgroundColor
+	padding 30px 0 50px 0
+	overflow hidden
 	
 	&__wrapper
 		display flex
@@ -64,13 +69,23 @@ h1
 
 .maintextblock
 	display flex
+	flex-flow row wrap
 	
 	> .block_about
 		width 70%
+		box-sizing border-box
 		padding-right 40px
+		@media screen and (max-width: $xs)
+			width 60%
+		@media screen and (max-width: $xxs)
+			width 100%
 		
 	> .block_news
 		width 30%
+		@media screen and (max-width: $xs)
+			width 40%
+		@media screen and (max-width: $xxs)
+			width 100%
 		
 //news
 .news
