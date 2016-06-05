@@ -6,7 +6,10 @@
 		"password"	: "KrepSpbRu"
 	};
 
-	let MongoClient = require('mongodb').MongoClient;
+	let mongodb = require('mongodb'),
+		MongoClient = mongodb.MongoClient,
+		ObjectID = mongodb.ObjectID,
+		_ = require('underscore');
 
 	// Connection URL 
 	var url = `mongodb://${cfg.username}:${cfg.password}@${cfg.host || 'localhost'}:${cfg.port || 27015}/${cfg.db}`;
@@ -22,7 +25,40 @@
 	 
 		global.MONGO = db;
 
-		console.log(db)
+		json = require('./dump.json');
 
-		db.collection('groups').insert([{"name":"Анкера","ordr":"0","parent_id":"11","enable":true},{"name":"Забивной анкер","ordr":"0","parent_id":"1","enable":true},{"name":"ДЛЯ СТИРКИ","ordr":"0","parent_id":"0","enable":true},{"name":"МЫЛО","ordr":"0","parent_id":"0","enable":true},{"name":"БУМАЖНЫЕ ПОЛОТЕНЦА, ТУАЛЕТНАЯ БУМАГА","ordr":"0","parent_id":"0","enable":true},{"name":"ДЛЯ МЫТЬЯ И УБОРКИ","ordr":"0","parent_id":"0","enable":true},{"name":"ОДНОРАЗОВАЯ ПОСУДА","ordr":"0","parent_id":"0","enable":true},{"name":"АПТЕЧКИ И ОГНЕТУШИТЕЛИ","ordr":"0","parent_id":"0","enable":true},{"name":"Профиль","ordr":"0","parent_id":"55","enable":true},{"name":"Клиновые","ordr":"0","parent_id":"1","enable":true},{"name":"ДЕЗИНСЕКЦИЯ И УДАЛЕНИЕ ЗАПАХА, ОСВЕЖИТЕЛИ","ordr":"0","parent_id":"0","enable":true},{"name":"Забивной","ordr":"0","parent_id":"12","enable":true},{"name":"Клиновой (горячий цинк)","ordr":"0","parent_id":"12","enable":true},{"name":"Клиновой (электроцинк)","ordr":"0","parent_id":"12","enable":true},{"name":"Дюбель-гвоздь","ordr":"0","parent_id":"2","enable":true},{"name":"Рамный дюбель","ordr":"0","parent_id":"2","enable":true},{"name":"Фасадный","ordr":"0","parent_id":"3","enable":true},{"name":"Кровельный","ordr":"0","parent_id":"3","enable":true},{"name":"Шурупы и гвозди к дюбелям","ordr":"0","parent_id":"3","enable":true},{"name":"Кровельные","ordr":"0","parent_id":"4","enable":true},{"name":"Саморезы ГД","ordr":"0","parent_id":"4","enable":true},{"name":"Саморезы ГМ","ordr":"0","parent_id":"4","enable":true},{"name":"Болты","ordr":"0","parent_id":"5","enable":true},{"name":"Саморезы СММ (клоп)","ordr":"0","parent_id":"4","enable":true},{"name":"Гайки","ordr":"0","parent_id":"5","enable":true},{"name":"Шпильки","ordr":"0","parent_id":"5","enable":true},{"name":"Винты","ordr":"0","parent_id":"5","enable":true},{"name":"Валики,кисти","ordr":"0","parent_id":"6","enable":true},{"name":"Шпатели, терки, диски","ordr":"0","parent_id":"6","enable":true},{"name":"Мешки, перчатки, шнуры","ordr":"0","parent_id":"6","enable":true},{"name":"Электроинструмент","ordr":"0","parent_id":"6","enable":true},{"name":"Пены","ordr":"0","parent_id":"8","enable":true},{"name":"Герметики","ordr":"0","parent_id":"8","enable":true},{"name":"Пистолеты","ordr":"0","parent_id":"8","enable":true},{"name":"Перфорированный крепеж","ordr":"0","parent_id":"7","enable":true},{"name":"Вилатерм, Пленки","ordr":"0","parent_id":"7","enable":true},{"name":"Геотекстиль","ordr":"0","parent_id":"7","enable":true},{"name":"Трубная изоляция","ordr":"0","parent_id":"7","enable":true},{"name":"Бур,Сверло","ordr":"0","parent_id":"12","enable":true},{"name":"Химанкер","ordr":"0","parent_id":"12","enable":true},{"name":"Гвозди","ordr":"0","parent_id":"2","enable":true},{"name":"Заклепки","ordr":"0","parent_id":"5","enable":true},{"name":"Профиль примыкающий","ordr":"0","parent_id":"63","enable":true},{"name":"Профиль примыкающий","ordr":"0","parent_id":"55","enable":true},{"name":"Капельник","ordr":"0","parent_id":"55","enable":true},{"name":"Профиль цокольный","ordr":"0","parent_id":"55","enable":true},{"name":"Доп. элементы","ordr":"0","parent_id":"55","enable":true},{"name":"Профиль угловой","ordr":"0","parent_id":"63","enable":false},{"name":"Профиль угловой ","ordr":"0","parent_id":"67","enable":true},{"name":"Профиль примыкающий","ordr":"0","parent_id":"67","enable":true},{"name":"Капельник","ordr":"0","parent_id":"67","enable":true},{"name":"Профиль цокольный","ordr":"0","parent_id":"67","enable":true},{"name":"Доп. элементы","ordr":"0","parent_id":"67","enable":true},{"name":"Профиль угловой","ordr":"0","parent_id":"73","enable":true},{"name":"профиль примыкающий","ordr":"0","parent_id":"73","enable":true},{"name":"Профиль капельник","ordr":"0","parent_id":"73","enable":true},{"name":"Профиль цокольный","ordr":"0","parent_id":"73","enable":true},{"name":"Доп. элементы","ordr":"0","parent_id":"73","enable":true},{"name":"ЧИСТЯЩИЕ СРЕДСТВА","ordr":"0","parent_id":"0","enable":true},{"name":"ГУБКИ ЕРШИКИ МЕТЛЫ ЩЕТКИ","ordr":"0","parent_id":"84","enable":true},{"name":"ПАКЕТЫ","ordr":"0","parent_id":"84","enable":true},{"name":"МОЮЩИЕ СРЕДСТВА","ordr":"0","parent_id":"84","enable":true},{"name":"ПЕРЧАТКИ","ordr":"0","parent_id":"84","enable":true},{"name":"ТРЯПКИ, ТКАНЕВЫЕ САЛФЕТКИ","ordr":"0","parent_id":"84","enable":true},{"name":"ШВАБРЫ, ВЕДРА, ТАЗИКИ","ordr":"0","parent_id":"84","enable":true},{"name":"ОТБЕЛИВАТЕЛИ, КОНДИЦИОНЕРЫ, АНТИСТАТИКИ","ordr":"0","parent_id":"85","enable":true},{"name":"СТИРАЛЬНЫЕ ПОРОШКИ","ordr":"0","parent_id":"85","enable":true},{"name":"ЖИДКОЕ МЫЛО","ordr":"0","parent_id":"86","enable":true},{"name":"УНИЧТОЖЕНИЕ НАСЕКОМЫХ","ordr":"0","parent_id":"81","enable":true},{"name":"Т. БУМАГА СТАНДАРТНЫЙ РУЛОН","ordr":"0","parent_id":"87","enable":true},{"name":"ПОЛОТЕНЦА БУМАЖНЫЕ РУЛОН","ordr":"0","parent_id":"87","enable":true},{"name":"Т. БУМАГА БОЛЬШОЙ РУЛОН (ПРОФ)","ordr":"0","parent_id":"87","enable":true},{"name":"ЛИСТОВЫЕ ПОЛОТЕНЦА, ЛИСТОВАЯ БУМАГА","ordr":"0","parent_id":"87","enable":true},{"name":"ЧИСТЯЩИЕ СРЕДСТВА ДЛЯ САНТЕХНИКИ","ordr":"0","parent_id":"88","enable":true},{"name":"ЧИСТЯЩИЕ СРЕДСТВА УНИВЕРСАЛЬНЫЕ","ordr":"0","parent_id":"88","enable":true},{"name":"ТВЕРДОЕ МЫЛО","ordr":"0","parent_id":"86","enable":true},{"name":"УДАЛЕНИЕ ЗАПАХА","ordr":"0","parent_id":"81","enable":true},{"name":"ОСВЕЖИТЕЛИ","ordr":"0","parent_id":"81","enable":true},{"name":"АПТЕЧКИ","ordr":"0","parent_id":"79","enable":true},{"name":"ОГНЕТУШИТЕЛИ","ordr":"0","parent_id":"79","enable":true}]);
+		map = {};
+		json.forEach(obj => {
+			let id = obj.id;
+			delete obj.id;
+			map[id] = obj;
+		});
+
+		let exitArray = [], obj;
+		debugger;
+		while(obj = json.shift()){
+			obj._id || (obj._id = new ObjectID());
+
+			let parentId = obj.parent_id;
+			if(parentId == 0){
+				obj.parent_id = null;
+			}else{
+
+				let	parent = map[parentId];
+
+				if(!parent) continue;
+				if(!parent._id){
+					let index = json.indexOf(parent);
+					json.unshift(json.splice(index, 1), obj);
+					continue;
+				}
+
+				obj.parent_id = parent._id;
+
+			}
+			exitArray.push(obj);
+		}
+
+		fs = require('fs');
+		fs.writeFile('exit.json', JSON.stringify(exitArray))
 	});
