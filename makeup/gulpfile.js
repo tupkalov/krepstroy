@@ -34,17 +34,6 @@ gulp.task('scripts', function() {
         .pipe(buffer())
         .pipe(gulp.dest('js'))
         .pipe(livereload());
-
-   /*gulp.src(['js/src/**\/*.js'])
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(concat('all.js'))
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('js'))
-        .pipe(livereload());*/
 })
 
 gulp.task('styles', function() {  
@@ -53,12 +42,11 @@ gulp.task('styles', function() {
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(stylus())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('css'))
-        .pipe(livereload());
+        .pipe(gulp.dest('css'));
 })
 
 gulp.task('templates', function(){
-    gulp.src(['templates/*.pug'])
+    gulp.src(['templates/pages/*.pug'])
         .pipe(plumber())
         .pipe(pug())
         .pipe(gulp.dest('./'))
@@ -78,10 +66,9 @@ gulp.task('http-server', function() {
 gulp.task('watch', function() {
     livereload.listen();
 
-    gulp.watch('js/src/**', ['scripts'])
-    gulp.watch('styles/**', ['styles'])
-    gulp.watch('blocks/**', ['styles', 'scripts', 'templates'])
-    gulp.watch('templates/**', ['templates'])
+    gulp.watch(['js/src/**/*.js', 'blocks/**/*.js'], ['scripts'])
+    gulp.watch(['styles/**/*.styl', 'blocks/**/*.styl'], ['styles'])
+    gulp.watch(['templates/**/*.pug', 'blocks/**/*.pug'], ['templates'])
 
 });
 

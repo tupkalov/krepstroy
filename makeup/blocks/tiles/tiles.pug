@@ -1,74 +1,15 @@
-- 
-	var groups = [
-		{
-			name : "Для стирки",
-			id   : 1,
-			alias: 'washing',
-			image: '/files/cat1.jpg',
-			count: 50
-		},
-		{
-			name : "Мыло",
-			id   : 2,
-			alias: 'soap',
-			image: '/files/cat2.jpg',
-			count: 37
-		},
-		{
-			name : "Бумажные полотенца, туалетная бумага",
-			id   : 3,
-			alias: 'paper',
-			image: '/files/cat3.jpg',
-			count: 12
-		},
-		{
-			name : "Для мытья и уборки",
-			id   : 4,
-			alias: 'clear',
-			image: '/files/cat4.jpg',
-			count: 155
-		},
-		{
-			name : "Одноразовая посуда",
-			id   : 5,
-			alias: 'onetime',
-			image: '/files/cat6.jpg',
-			count: 11
-		},
-		{
-			name : "Аптечки и огнетушители",
-			id   : 6,
-			alias: 'health',
-			image: '/files/cat7.jpg',
-			count: 28
-		},
-		{
-			name : "Дезинсекция и удаление запаха, освежители",
-			id   : 7,
-			alias: 'desinsection',
-			image: '/files/cat8.jpg',
-			count: 150
-		},
-		{
-			name : "Чистящие средства",
-			id   : 8,
-			alias: 'cleaning',
-			image: '/files/cat9.jpg',
-			count: 5
-		},
-	]
-
-.tiles
-	each item in groups
-		a.tiles__item(
-			data-id=item.id
-			href="/"+item.alias
-		)
-			.tiles__item__image(
-				style={
-					'background-image' : 'url(' + item.image + ')'
-				} 
+mixin tiles(groups, options)
+	.tiles
+		each item in groups
+			a.tiles__item(
+				data-id=item.id
+				href="/"+item.alias
 			)
-			.tiles__item__name
-				=item.name
-			.tiles__item__count (#{item.count})
+				.tiles__item__image(
+					style={
+						'background-image' : 'url(' + item.image + ')'
+					} 
+				)
+				.tiles__item__name
+					=item.name
+				.tiles__item__count (#{item.count})
