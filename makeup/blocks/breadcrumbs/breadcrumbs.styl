@@ -1,0 +1,15 @@
+.breadcrumbs
+	smallFont() 
+	
+	&__item
+		display inline
+
+		&::after
+			margin 0 5px
+			text-decoration none
+			content '\000BB'
+			display inline
+			
+			^[1]:last-child&
+				display none
+					

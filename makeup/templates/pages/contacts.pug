@@ -1,0 +1,16 @@
+extends ../layout
+
+block prepend column
+	.sidebar
+		include ../data/groupsSub
+		+groups(groups)
+
+block content
+	.block.block_contacts
+		include ../data/contactsData
+		h2 Контактная информация
+		.block !{contactsData.text}
+
+		h1 Форма обратной связи
+		.block
+			+feedback
