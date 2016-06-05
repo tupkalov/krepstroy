@@ -2,6 +2,17 @@
 krepstroy site with backend
 
 # Схемы данных
+
+### GLO
+```javascript
+  {
+    contactsData : {
+      text : <STRING> // Текст в контактах
+    }
+  }
+```
+
+
 ### Feedback
 ```javascript
 {
