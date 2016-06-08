@@ -8,7 +8,7 @@
 
 	let mongodb = require('mongodb'),
 		MongoClient = mongodb.MongoClient,
-		ObjectID = mongodb.ObjectID,
+		ObjectID = mongodb.ObjectId,
 		_ = require('underscore');
 
 	// Connection URL 
@@ -22,7 +22,9 @@
 		}
 
 		console.log(`Connected correctly to server ${cfg.host}:${cfg.port}`);
-	 
+	 	
+	 	debugger;
+
 		global.MONGO = db;
 
 		json = require('./dump.json');
@@ -30,12 +32,10 @@
 		map = {};
 		json.forEach(obj => {
 			let id = obj.id;
-			delete obj.id;
 			map[id] = obj;
 		});
 
 		let exitArray = [], obj;
-		debugger;
 		while(obj = json.shift()){
 			obj._id || (obj._id = new ObjectID());
 
@@ -49,7 +49,7 @@
 				if(!parent) continue;
 				if(!parent._id){
 					let index = json.indexOf(parent);
-					json.unshift(json.splice(index, 1), obj);
+					json.unshift(json.splice(index, 1)[0], obj);
 					continue;
 				}
 
@@ -58,7 +58,24 @@
 			}
 			exitArray.push(obj);
 		}
+		console.log('done');
+
+		exitArray = exitArray
+		.map(({_id, img, name, ordr, parent_id, skey}) => {
+
+			return {
+				_id : ObjectID(_id),
+				image : img ? '/files/' + img : null,
+				name,
+				ordr : parseInt(ordr),
+				parent_id : ObjectID(parent_id),
+				alias : skey
+			}
+
+		})
 
 		fs = require('fs');
-		fs.writeFile('exit.json', JSON.stringify(exitArray))
+		fs.writeFile('exit.json', JSON.stringify(exitArray), () => {
+			console.log('writeed')
+		})
 	});
