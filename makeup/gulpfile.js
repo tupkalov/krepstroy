@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
 var babelify = require('babelify');
+var exorcist = require('exorcist');
 var browserify = require('browserify');
 
 var pug = require("gulp-pug");
@@ -30,6 +31,9 @@ gulp.task('scripts', function() {
 
     bundler.bundle()
         .on('error', function (err) { console.error(err); })
+        .pipe(exorcist('js/app.js.map', {
+            root : '../'
+        }))
         .pipe(source('app.js'))
         .pipe(buffer())
         .pipe(gulp.dest('js'))
@@ -53,15 +57,6 @@ gulp.task('templates', function(){
         .pipe(livereload());
 })
 
-// Локальный сервер для разработки
-gulp.task('http-server', function() {
-    connect()
-        .use(require('connect-livereload')())
-        .use(serveStatic('./'))
-        .listen('9000');
-
-    console.log('Server listening on http://localhost:9000');
-})
 
 gulp.task('watch', function() {
     livereload.listen();
@@ -72,4 +67,4 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('default', ['scripts', 'styles', 'templates', 'watch', 'http-server']);
+gulp.task('default', ['scripts', 'styles', 'templates', 'watch']);

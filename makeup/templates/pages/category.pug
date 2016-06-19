@@ -1,24 +1,21 @@
-extends ../layout
 
-block prepend column
-	.sidebar
-		include ../data/groups
-		-
-			var obj = groups.find(obj => obj.id === 4);
-			obj && (obj.active = true);
-		+groups(groups)
+include ../data/groups
+-
+	var obj = groups.find(obj => obj.id === 4);
+	obj && (obj.active = true);
 
-block content
-	.block.block_breasdcrumbs
-		-
-			var breadcrumbs = [
-				{
-					name : "Болты, гайки, шпильки, винты",
-					href : "category.html"
-				}
-			]
-		+breadcrumbs(breadcrumbs)
+	var breadcrumbs = [
+		{
+			name : "Болты, гайки, шпильки, винты",
+			href : "category.html"
+		}
+	]
 
-	.block.block_tiles
-		include ../data/tilesCategory
-		+tiles(groups, {left : true})
+
+ 
+
+
+include ../data/tilesCategory
+
+
+include ../layouts/category.pug 

@@ -1,0 +1,27 @@
+mixin orderForm
+	.order-form
+		.order-form__item
+			label.order-form__label(for="name") Контактное лицо
+			input#name.order-form__input(required type="text" name="name" autocomplete="name")
+				
+		.order-form__item
+			label.order-form__label(for="tel") Контактное телефон
+			input#tel.order-form__input(required type="text" name="tel" autocomplete="tel")
+				
+		.order-form__item
+			label.order-form__label(for="organization") Наименование организации
+			input#organization.order-form__input(required type="text" name='organization' autocomplete="organization")
+				
+		.order-form__item
+			label.order-form__label(for="address") Адрес доставки
+			textarea#address.order-form__textarea(required name="street-address" autocomplete="street-address")
+				
+		.order-form__item
+			label.order-form__label(for="inn") ИНН
+			input#inn.order-form__input(type="text" name="inn" autocomplete="inn")
+				
+		.order-form__item
+			label.order-form__label(for="additional") Дополнительно
+			textarea#additional.order-form__textarea(name="additional" autocomplete="off")
+
+		input.order-form__submit(type="submit" value="Отправить заказ")

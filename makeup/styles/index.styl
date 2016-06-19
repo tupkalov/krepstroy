@@ -35,6 +35,17 @@ a
 
 	&:hover
 		color $lightFontColor
+		
+button
+	border 0
+	background-color $activeColor
+	border-radius 5px
+	padding 10px
+	color $grayFontColor
+	cursor pointer
+	
+	&:hover
+		background-color $brightColor
 
 .main
 	background-color $backgroundColor
@@ -45,10 +56,10 @@ a
 		display flex
 		flex-direction row
 
-$sidebarWidth = 260px
+$sidebarWidth = 240px
 .sidebar
 	~ .main-container
-		margin-left 30px
+		margin-left 50px
 		
 .main-container
 	flex-grow 1
@@ -58,6 +69,8 @@ $sidebarWidth = 260px
 	textFont()
 	
 h1
+	headerFont()
+h2
 	headerFont()
 		
 
@@ -82,5 +95,9 @@ h1
 			width 40%
 		@media screen and (max-width: $xxs)
 			width 100%
-	
+			
 @import '../blocks/index';
+
+
+.block-feedback
+	margin-top 50px 

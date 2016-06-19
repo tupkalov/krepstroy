@@ -55,3 +55,4 @@ testftp/
 #compiled templates
 /makeup/*.html
 /ftp
+/static/*

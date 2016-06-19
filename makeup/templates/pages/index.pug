@@ -1,18 +1,3 @@
-extends ../layout
-block banner
-	+banner
-
-block content
-	.block.block_tiles
-		include ../data/tilesMain
-		+tiles(groups)
-
-	.maintextblock
-		.block.block_about
-			h1 О компании
-			p Наша компания работает для строительных организаций и потребителей хозтоваров. Основная специализация это:   Профили фасадные пены, герметики, хозтовары, а также сопутствующие категории товаров (пленки, сетки, скотч).
-			p Вы можете сами сформировать ваш заказ на нашем сайте или обратиться к специалистам по телефонам +7(905)210-10-05, а также по электронным адресам : krep.spb@mail.ru
-
-		.block.block_news
-			include ../data/newsData
-			+news(newsData)
+include ../data/tilesMain
+include ../data/newsData
+include ../layouts/index
