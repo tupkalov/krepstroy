@@ -78,7 +78,7 @@
 				name 	: obj.name,
 				alias 	: obj.skey,
 				disabled: obj.onoff !== "1",
-				parent_id: obj.parent_id
+				parentId: obj.parent_id
 			};
 			groupsArray.push(groupsObj);
 
@@ -118,7 +118,7 @@
 			let good = {
 				_id 		: new ObjectID,
 				ordr 		: isNaN(ordr) ? null : ordr,
-				group_id 	: group._id,
+				groupId 	: group._id,
 				name 		: goodObj.name,
 				alias 		: goodObj.skey,
 				description	: goodObj.ann,

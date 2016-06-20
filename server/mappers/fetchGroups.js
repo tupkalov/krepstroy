@@ -1,8 +1,8 @@
 module.exports = () =>
-	new Promise((res, rej) => 
-		MONGO.collections.groups.find({
-			enable 		: true,
-			parentId 	: null
+	new Promise((res, rej) => {
+
+		MONGO.collection('groups').find({
+			disabled	: false
 		}).toArray((error, result) => {
 			if(result)
 				res(result);
@@ -11,4 +11,4 @@ module.exports = () =>
 			else
 				rej(new AppError('GetGroups:NoGroups'));
 		})
-	)
+	})

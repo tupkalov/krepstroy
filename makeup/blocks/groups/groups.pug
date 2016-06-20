@@ -23,7 +23,7 @@ mixin groups(groups, options)
 							each sub in val.list
 								.groups-sub__item
 									a.groups-subitem(
-										href=`#${sub.id}`
+										href=`#${sub._id}`
 										class=sub.active ? 'groups-subitem_active':''
 									)
 										.groups-subitem__name= sub.name
