@@ -20,4 +20,6 @@ mixin good(goodData)
 			- var price = goodData.price + ' &#8381;';
 			.good-item__price= goodData.price
 			.good-item__measure за #{goodData.measure}
+			.good-item__counter
+				+counter
 			button.good-item__button В корзину

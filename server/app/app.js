@@ -1,10 +1,28 @@
 const express = require('express');
-const webserver = require('./webserver');
-const database = require('./database');
+
+const webserver 	= require(__appdir + '/webserver');
+const database 		= require(__appdir + '/database');
+const initialize 	= require(__appdir + '/initialize');
 
 exports.start = config => {
 	if(!config) throw new AppError('noConfig');
 
-	webserver.start(config);
-	database.start(config);
+	Promise.all([
+		webserver.start(config),
+		database.start(config)
+	])
+		.then(
+
+			res => {
+				process.emit('load');
+				initialize.start(config);
+			},
+
+
+			error => {
+				App.log(error);
+				process.exit();
+			}
+			
+		)
 }	

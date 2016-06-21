@@ -1,15 +1,14 @@
-include ../blocks/index
+include ../blocks/index 
 
 doctype html
 html
 	head
 		title КРЕПСТРОЙ
-		link(rel='stylesheet', type='text/css', href='/css/index.css')
-		script(type="text/javascript", src="/js/app.js")
+		link(rel='stylesheet', type='text/css', href='/build/index.css')
+		script(type="text/javascript", src="/build/app.js")
 		meta(name="viewport" content="width=device-width, initial-scale=1")
-	body
-
-		+basket
+	body 
+		+basket(req && req.session.basket ? req.session.basket.length : 0)
 
 		//- header
 		.header

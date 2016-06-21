@@ -1,0 +1,41 @@
+.counter
+	width 100px
+	display flex
+	font-size 1.3em
+
+	
+	&__plus
+	&__minus
+		width 20px
+		text-align: center
+		background-color $activeColor
+		color white
+		
+		&:hover
+			background-color $brightColor
+		
+	&__plus
+		border-radius 0 4px 4px 0
+		&::after
+			content '+'
+
+		^[0]_center &
+			order 2
+			
+	&__minus
+		border-radius 4px 0 0 4px
+		&::after
+			content '\2013'
+
+		^[0]_center &
+			order 0
+
+	&__input
+		width 40px
+		text-align: left
+		border 0
+		outline 0
+
+		^[0]_center &
+			order 1
+			text-align center

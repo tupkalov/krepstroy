@@ -1,10 +1,12 @@
 var gulp = require('gulp');  
 var concat = require('gulp-concat');
 
+var exorcist = require('exorcist');
+
+var browserify = require('browserify');
+var babelify = require('babelify');
 var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
-var babelify = require('babelify');
-var browserify = require('browserify');
 
 var pug = require("gulp-pug");
 
@@ -30,9 +32,12 @@ gulp.task('scripts', function() {
 
     bundler.bundle()
         .on('error', function (err) { console.error(err); })
+        .pipe(exorcist('build/app.js.map', {
+            root : '../'
+        }))
         .pipe(source('app.js'))
         .pipe(buffer())
-        .pipe(gulp.dest('js'))
+        .pipe(gulp.dest('build'))
         .pipe(livereload());
 })
 
@@ -42,7 +47,7 @@ gulp.task('styles', function() {
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(stylus())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('css'));
+        .pipe(gulp.dest('build'));
 })
 
 gulp.task('templates', function(){
@@ -53,15 +58,6 @@ gulp.task('templates', function(){
         .pipe(livereload());
 })
 
-// Локальный сервер для разработки
-gulp.task('http-server', function() {
-    connect()
-        .use(require('connect-livereload')())
-        .use(serveStatic('./'))
-        .listen('9000');
-
-    console.log('Server listening on http://localhost:9000');
-})
 
 gulp.task('watch', function() {
     livereload.listen();
@@ -72,4 +68,33 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('default', ['scripts', 'styles', 'templates', 'watch', 'http-server']);
+
+
+
+
+let replace =require('gulp-replace');
+
+gulp.task('compileTemplates', () => {
+
+    gulp.src(['./templates/layouts/*.pug'])
+        .pipe(pug({client : true, compileDebug : false}))
+        .pipe(replace('function template(locals)', 'module.exports = function(locals, jade)'))
+        .pipe(
+            gulp.dest('./build/viewjs')
+        )
+        .pipe(livereload());
+
+})
+
+gulp.task('watch-make', function(){
+    livereload.listen();
+
+    gulp.watch(['js/src/**/*.js', 'blocks/**/*.js'], ['scripts'])
+    gulp.watch(['styles/**/*.styl', 'blocks/**/*.styl'], ['styles'])
+    gulp.watch(['templates/**/*.pug', 'blocks/**/*.pug'], ['compileTemplates'])
+})
+
+
+gulp.task('make', ['compileTemplates', 'scripts', 'styles', 'watch-make']);
+
+gulp.task('default', ['scripts', 'styles', 'templates', 'watch']);

@@ -3,12 +3,12 @@ mixin tiles(groups, options)
 		each item in groups
 			a.tiles__item(
 				data-id=item.id
-				href="/"+item.alias
+				href="/cat/"+item.alias
 			)
 				.tiles__item__image(
 					style={
-						'background-image' : 'url(' + item.image + ')'
-					} 
+						'background-image' : item.image ? 'url(' + item.image + ')' : 'none'
+					}  
 				)
 				.tiles__item__name
 					=item.name
