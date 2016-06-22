@@ -7,7 +7,7 @@ const className = "goods",
 	  buttonClass = `${itemClass}__button`,
 	  counterClass = `${itemClass}__counter`;
 
-export class Groups{
+export class Goods{
 
 	constructor (el) {
 		this.el = el;
@@ -37,7 +37,7 @@ export class Groups{
 	static start () {
 		Array.from(document.querySelectorAll(`.${className}`))
 			.forEach(el => {
-				return new Groups(el);
+				return new Goods(el);
 			})
 	}
 }

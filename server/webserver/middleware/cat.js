@@ -2,7 +2,6 @@ const co = require('co');
 
 module.exports = co.wrap(function *(req, res, next){
 	let group, alias = req.params.alias;
-
 	if(!alias || !(group = App.groupsMap[alias]))
 		throw new AppError('NoGroupForAlias', {status : 404, info : {alias, req : req.params}});
 	
@@ -26,7 +25,6 @@ module.exports = co.wrap(function *(req, res, next){
 			goods 		: App.mappers.fetchGoodsByGroupId(group._id)
 		};
 
-		console.log(data.goods.length);
 
 		res.render('subcat', data);
 

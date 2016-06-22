@@ -20,7 +20,7 @@ export class Basket{
 			return Promise.resolve(
 				$.post('/basket/add', {id, count})
 					.then(
-						{dafreshta} => this.refresh(data)
+						({data}) => this.refresh(data)
 					)
 			)
 	}
@@ -29,7 +29,7 @@ export class Basket{
 		return Promise.resolve(
 			$.post('/basket/remove', {id})
 				.then(
-					{data} => this.refresh(data)
+					({data}) => this.refresh(data)
 				)
 		)
 	}

@@ -9,3 +9,9 @@ document.addEventListener("DOMContentLoaded", Counter.start)
 
 import {Order} from "./order/order"
 document.addEventListener("DOMContentLoaded", Order.start) 
+
+import {Goods} from "./goods/goods"
+document.addEventListener("DOMContentLoaded", Goods.start) 
+
+import {Basket} from "./basket/basket"
+document.addEventListener("DOMContentLoaded", Basket.start) 

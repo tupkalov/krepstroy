@@ -21,6 +21,8 @@
 		text-align right
 		position: relative
 		flex-shrink 0
+		display flex
+		flex-flow column
 		
 
 	&__image
@@ -85,12 +87,9 @@
 	&__measure
 		color $disableFontColor
 		smallFont()
+		flex-grow 1
 			
 
 	&__button
-		position: absolute
-		bottom 0
-		width 100%
-		right 0
-		
-			
+		display block
+		margin-top 10px
