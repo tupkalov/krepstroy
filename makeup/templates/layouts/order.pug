@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+	h2 Оформить заказ
+	form.order-layout(action="/order" method="POST")
+		.order-layout__left
+			+order(orderData)
+
+		.order-layout__main
+			+orderForm
+		

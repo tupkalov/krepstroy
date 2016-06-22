@@ -43,8 +43,8 @@ node_modules/
 
 # local scripts #
 #################
-layouts/
-testftp/
+/layouts/
+/testftp/
 
 #compiled css
 /makeup/css/

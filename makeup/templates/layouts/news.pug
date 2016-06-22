@@ -1,0 +1,9 @@
+extends ../layout
+
+block prepend column
+	.sidebar
+		+groups(groups)
+
+block content
+	.block.block_news
+		+fullnews(newsData)
