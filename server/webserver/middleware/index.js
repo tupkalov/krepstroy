@@ -7,6 +7,11 @@ const co = require('co');
 
 module.exports = app => {
 
+	app.use((req, res, next) => {
+		req.render = require('./renderMethod');
+		next();
+	});
+
 	for(let url in map){
 		let handler = map[url];
 

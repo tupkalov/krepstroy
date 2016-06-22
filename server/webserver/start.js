@@ -1,4 +1,6 @@
-const express = require('express');
+const express = require('express'),
+	  session = require('express-session');
+	  
 module.exports = config => 
 	new Promise((resolve, reject) => {
 		let app = new express();
