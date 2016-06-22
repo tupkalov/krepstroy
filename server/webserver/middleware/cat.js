@@ -10,21 +10,25 @@ module.exports = co.wrap(function *(req, res, next){
 	if(group.list && group.list.length){
 		let data = yield {
 			groups 			: App.mappers.getGroupsSidebar({activeId : group._id}),
-			tileCategory 	: App.mappers.getTileCategory(group._id),
+			tilesCategory 	: App.mappers.getTileCategory(group._id),
 			breadcrumbs 	: App.mappers.getBreadcrumbs(group._id)
 		}
-		res.render('category');
+
+		res.render('category', data);
 
 	}
 	// subcat
 	else {
 
 		let data = yield {
-			groups 		: App.mappers.getFirstLevelGroups(),
-			newsData	: App.mappers.getFirstPageNews()
+			groups 		: App.mappers.getGroupsSidebar({activeId : group._id}),
+			breadcrumbs	: App.mappers.getBreadcrumbs(group._id),
+			goods 		: App.mappers.fetchGoodsByGroupId(group._id)
 		};
 
-		res.render('index', data);
+		console.log(data.goods.length);
+
+		res.render('subcat', data);
 
 	}
 });

@@ -1,5 +1,6 @@
 module.exports = options => {
-	return start(App.groupsList, options)
+	debugger;
+	return start(App.groupsTree, options)
 }
 
 function start (arr, options) {
@@ -16,7 +17,7 @@ function start (arr, options) {
 			_id : g._id,
 			name : g.name,
 			alias : g.alias,
-			list : start(g.list)
+			list : start(g.list) || []
 		};
 
 		if(activeId && group._id == activeId)

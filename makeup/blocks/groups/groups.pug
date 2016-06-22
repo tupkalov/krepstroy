@@ -8,7 +8,7 @@ mixin groups(groups, options)
 				}
 			)
 				a.groups-item(
-					href=`#${val.name}` 
+					href=`/cat/${val.alias}` 
 					class=val&&val.open ? "groups-item_open":""
 					class=val&&val.active ? "groups-item_active":""
 				)
@@ -23,7 +23,7 @@ mixin groups(groups, options)
 							each sub in val.list
 								.groups-sub__item
 									a.groups-subitem(
-										href=`#${sub._id}`
+										href=`/cat/${sub.alias}` 
 										class=sub.active ? 'groups-subitem_active':''
 									)
 										.groups-subitem__name= sub.name
