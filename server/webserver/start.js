@@ -1,5 +1,6 @@
 const express = require('express'),
 	  session = require('express-session');
+
 	  
 module.exports = config => 
 	new Promise((resolve, reject) => {

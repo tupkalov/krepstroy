@@ -1,6 +1,7 @@
 let map = {
 	'/' : require('./root'),
-	'/cat/:alias' : require('./cat')
+	'/cat/:alias' : require('./cat'),
+	'/basket' : require('./basket')
 };
 
 const co = require('co');
@@ -9,6 +10,7 @@ module.exports = app => {
 
 	app.use((req, res, next) => {
 		req.render = require('./renderMethod');
+		console.log(req.path);
 		next();
 	});
 
@@ -20,6 +22,7 @@ module.exports = app => {
 				co(handler, req, res, next).catch(next)				
 			);
 		}else{
+			console.log(url)
 			app.use(url, handler);
 		}
 	}

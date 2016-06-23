@@ -1,7 +1,7 @@
 import {$} from "../../js/src/libs";
 
 const className = "goods",
-	  itemClass = "good",
+	  itemClass = "good-item",
 	  itemProcessClass = `${itemClass}_processing`,
 	  itemBuyedClass = `${itemClass}_in-basket`,
 	  buttonClass = `${itemClass}__button`,
@@ -18,7 +18,7 @@ export class Goods{
 
 			
 			let promise;
-			if($good.hasClass(itemBuyedClass)){
+			if(!$good.hasClass(itemBuyedClass)){
 				let count = parseInt($good.find(`.${counterClass} input`).val());
 				promise = BASKET.add(id, count);
 			}else{

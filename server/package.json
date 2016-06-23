@@ -9,6 +9,7 @@
   "author": "mail@tupkalov.ru",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "co": "^4.6.0",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
