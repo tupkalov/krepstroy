@@ -1,4 +1,4 @@
-import {$} from "../../js/src/libs";
+import {$} from "../../source/libs";
 
 const className = "goods",
 	  itemClass = "good",

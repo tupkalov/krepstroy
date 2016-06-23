@@ -1,4 +1,4 @@
-import {$} from "../../js/src/libs";
+import {$} from "../../source/libs";
 
 const __itemClass = "groups__item",
 	  __itemActiveClass = 'groups__item_active',

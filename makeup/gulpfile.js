@@ -25,7 +25,7 @@ var plumber = require('gulp-plumber');
 
 gulp.task('scripts', function() {  
 
-    var bundler = browserify({
+/*    var bundler = browserify({
         entries: 'js/src/index.js',
         debug: true
     });
@@ -39,11 +39,20 @@ gulp.task('scripts', function() {
             .pipe(sourcemaps.init({ includeContent : false, sourceRoot : '..'}))
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest('build'))
-/*
+
         .pipe(exorcist('build/app.js.map', '', '..'))
         .pipe(source('app.js'))
         .pipe(buffer())
         .pipe(gulp.dest('build'))*/
+
+
+      return browserify({ debug: true })
+        .transform(babelify)
+        .require('./source/index.js', { entry: true })
+        .bundle()
+        .on('error', function (err) { console.error(err); })
+        .pipe(source('index.js'))
+        .pipe(gulp.dest('./build'))
         .pipe(livereload());
 })
 
