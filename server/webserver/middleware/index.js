@@ -1,7 +1,7 @@
 let map = {
-	'/' : require('./root'),
-	'/cat/:alias' : require('./cat'),
-	'/basket' : require('./basket')
+	'get /' : require('./root'),
+	'get /cat/:alias' : require('./cat'),
+	'use /basket' : require('./basket')
 };
 
 const co = require('co');
@@ -10,21 +10,20 @@ module.exports = app => {
 
 	app.use((req, res, next) => {
 		req.render = require('./renderMethod');
-		console.log(req.path);
 		next();
 	});
 
-	for(let url in map){
-		let handler = map[url];
+	for(let key in map){
+		let [method, url] = key.split(' ');
+		let handler = map[key];
 
-		if(typeof handler === 'function'){
-			app.get(url, (req, res, next) => 
+		if(handler.constructor.name === 'GeneratorFunction'){
+			handler = (req, res, next) => {
 				co(handler, req, res, next).catch(next)				
-			);
-		}else{
-			console.log(url)
-			app.use(url, handler);
+			}
 		}
+
+		app[method](url, handler);
 	}
 
 
@@ -38,6 +37,3 @@ module.exports = app => {
 	})
 
 }
-
-
-

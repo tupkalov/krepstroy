@@ -2,7 +2,7 @@
 	var defaultImage="/img/defaultGoodImage.jpg"
 
 mixin good(goodData)
-	.good-item
+	.good-item(data-id=goodData._id.toString())
 		.good-item__first
 			.good-item__image
 				if goodData.photo

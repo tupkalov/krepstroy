@@ -15,16 +15,17 @@ function sendJson(success, data){
 			json.data = data
 		}
 	}
+	console.log(json)
 
 	this.json(json);
 }
 
 
 router.use((req, res, next) => {
-	console.log('op')
 	res.sendJson = sendJson;
 	next();
 })
+router.use(bodyParser.urlencoded({ extended: false }))
 router.use(bodyParser.json());
 
 
@@ -40,8 +41,10 @@ let map = {
 		// check id param
 		let id = req.body.id;
 		if(typeof req.body.id !== "string"){
-			throw new MiddlewareError("WrongId", 400, {info : {id : req.body.id}})
+			throw new MiddlewareError("WrongId", {status : 400, info : {id : req.body.id}})
 		}
+		console.log(req.body);
+
 
 		let good = basket.find(({_id}) => _id === id);
 		if(good) res.sendJson();
@@ -49,7 +52,7 @@ let map = {
 		good = yield App.mappers.fetchGood(req.body.id)
 			.catch(error => {
 				if(error instanceof MapperError && error.message === "NotFound"){
-					error = new MiddlewareError("GoodNotFound", 400, {error});
+					error = new MiddlewareError("GoodNotFound", {status : 400, error});
 					next(error);
 				}
 
@@ -58,7 +61,7 @@ let map = {
 
 		basket.push(good);
 
-		sendJson(true, basket);
+		res.sendJson(true, basket);
 	},
 
 	'/remove' : function (req, res, next){
@@ -71,13 +74,13 @@ let map = {
 
 		let index = basket.indexOf(good);
 		basket.splice(index, 1);
-		sendJson();
+		res.sendJson();
 	},
 
 	'/list' : function (req, res, next){
 
 		let basket = req.session.basket || (req.session.basket = [])
-		sendJson(true, basket);
+		res.sendJson(true, basket);
 
 	}
 };
@@ -87,7 +90,7 @@ for(let path in map){
 	let fn = map[path]
 	if(fn.constructor.name === 'GeneratorFunction')
 		router.post(path, (req, res, next) => {
-			co(fn, ...arguments).catch(next);
+			co(fn, req, res, next).catch(next);
 		});
 	else if(typeof fn === "function")
 		router.post(path, fn);
@@ -97,13 +100,13 @@ for(let path in map){
 
 
 
-router.use((error, request, response, next)  => {
+router.use((error, req, res, next)  => {
 	let basket = req.session.basket || (req.session.basket = []);
 	if(!(error instanceof MiddlewareError)){
 		App.log(error);
-		error = new MiddlewareError("Internal error", 500, {error});
+		error = new MiddlewareError("Internal error", {status : 500, error});
 	}
 
-	response.status(error.status || 500);
-	response.sendJson(false, error.message);
+	res.status(error.status || 500);
+	res.sendJson(false, error.message);
 })
