@@ -93,3 +93,15 @@
 	&__button
 		display block
 		margin-top 10px
+
+		&::after
+			content "В корзину"
+		^[0]_buyed &
+			background-color $brightColor
+
+			&::after
+				content "Уже в корзине"
+
+	&__counter
+		^[0]_buyed &
+			display none

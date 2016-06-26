@@ -1,16 +1,22 @@
-/*const className = "goods",
-	  itemClass = "good",
-	  itemBuyedClass = `${itemClass}_in-basket`,
-	  buttonClass = `${itemClass}__button`,
-	  counterClass = `${itemClass}__counter`;
-*/
+const className = "basket",
+		boxClassName = `${className}__box`,
+		countClassName =  `${boxClassName}__count`,
+		textClassName = `${boxClassName}__text`;
 
 // singleton
 export class Basket{
 
 	constructor (el) {
-		//this.el = el;
+		this.el = document.querySelector(`.${className}`);
 		
+		this.$text = $(`.${textClassName}`, this.el);
+		this.$counter = $(`.${countClassName}`, this.el);
+
+		$(this).on('data', e => {
+			let count = this.data ? this.data.length : 0;
+			this.$text.text(count ? `В корзине товаров: ${count}` : 'Корзина пуста');
+			this.$counter.text(count);
+		})
 	}
 
 	add (id, count) {
@@ -36,7 +42,7 @@ export class Basket{
 
 	refresh (data) {
 		this.data = data;
-		$(this).trigger('refresh');
+		$(this).trigger('data');
 	}
 
 	static start () {

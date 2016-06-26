@@ -9,8 +9,8 @@ const co = require('co');
 module.exports = app => {
 
 	app.use((req, res, next) => {
-		req.render = require('./renderMethod');
-		next();
+			res.render = require('./renderMethod')(req, res);
+			next();
 	});
 
 	for(let key in map){

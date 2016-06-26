@@ -1,7 +1,27 @@
-module.exports = groupId => 
-	new Promise((resolve, reject) => 
+module.exports = (groupId, basket) => 
+	(new Promise((resolve, reject) => 
 		MONGO.collection('goods').find({
 			groupId : MONGO.ObjectId(groupId),
 			disabled : {$ne : true}
-		}).toArray((err, res) => err ? reject(err) : resolve(res))
-	)
+		})
+		.sort({ordr : 1})
+		.toArray((err, res) => err ? reject(err) : resolve(res))
+	))
+
+	.then(goods => {
+		for(let basketElement of basket){
+
+			for(good of goods){
+
+				if(good._id.toString() === basketElement._id.toString()){
+					good.inBasket = basketElement.count
+
+				}
+
+			}
+
+		}
+
+		return goods;
+
+	})

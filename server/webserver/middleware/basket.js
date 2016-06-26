@@ -5,17 +5,16 @@ let router = module.exports = new Router();
 
 function sendJson(success, data){
 	json = {
-		type : success !== false
+		type : success !== false ? 'ok' : 'error'
 	};
 
 	if(data){
-		if(success !== false){
+		if(success === false){
 			json.message = data
 		}else{
 			json.data = data
 		}
 	}
-	console.log(json)
 
 	this.json(json);
 }
@@ -43,24 +42,33 @@ let map = {
 		if(typeof req.body.id !== "string"){
 			throw new MiddlewareError("WrongId", {status : 400, info : {id : req.body.id}})
 		}
-		console.log(req.body);
+
+		let count = parseInt(req.body.count);
+		if(isNaN(count) || count < 1){
+			throw new MiddlewareError("WrongCount", {status : 400, info : {count}});
+		}
 
 
 		let good = basket.find(({_id}) => _id === id);
-		if(good) res.sendJson();
+		if(good){
+			good.count = count;
 
-		good = yield App.mappers.fetchGood(req.body.id)
-			.catch(error => {
-				if(error instanceof MapperError && error.message === "NotFound"){
-					error = new MiddlewareError("GoodNotFound", {status : 400, error});
-					next(error);
-				}
+		}else{
 
-				throw error;
-			});
+			good = yield App.mappers.fetchGood(req.body.id)
+				.catch(error => {
+					if(error instanceof MapperError && error.message === "NotFound"){
+						error = new MiddlewareError("GoodNotFound", {status : 400, error});
+						next(error);
+					}
 
-		basket.push(good);
+					throw error;
+				});
 
+			basket.push({_id : req.body.id, count : count, good});
+
+		}
+		
 		res.sendJson(true, basket);
 	},
 
@@ -68,6 +76,11 @@ let map = {
 
 		let basket = req.session.basket || (req.session.basket = []);
 
+		// check id param
+		let id = req.body.id;
+		if(typeof req.body.id !== "string"){
+			throw new MiddlewareError("WrongId", {status : 400, info : {id : req.body.id}})
+		}
 
 		let good = basket.find(({_id}) => _id === id);
 		if(!good) res.sendJson();
@@ -106,7 +119,6 @@ router.use((error, req, res, next)  => {
 		App.log(error);
 		error = new MiddlewareError("Internal error", {status : 500, error});
 	}
-
 	res.status(error.status || 500);
 	res.sendJson(false, error.message);
 })
