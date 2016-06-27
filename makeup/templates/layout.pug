@@ -8,7 +8,7 @@ html
 		script(type="text/javascript", src="/build/index.js")
 		meta(name="viewport" content="width=device-width, initial-scale=1")
 	body 
-		+basket(req && req.session.basket ? req.session.basket.length : 0)
+		+basket(basket && basket.length)
 
 		//- header
 		.header

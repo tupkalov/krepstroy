@@ -2,7 +2,12 @@
 	var defaultImage="/img/defaultGoodImage.jpg"
 
 mixin good(goodData)
-	.good-item(data-id=goodData._id.toString())
+	.good-item(
+		data-id=goodData._id.toString()
+		class={
+			'good-item_buyed' : goodData.inBasket
+		}
+	)
 		.good-item__first
 			.good-item__image
 				if goodData.photo
@@ -23,4 +28,4 @@ mixin good(goodData)
 			.good-item__measure за #{goodData.measure}
 			.good-item__counter
 				+counter(null,null,true)
-			button.good-item__button В корзину
+			button.good-item__button

@@ -18,11 +18,12 @@ module.exports = co.wrap(function *(req, res, next){
 	}
 	// subcat
 	else {
+		let basket = req.session.basket || [];
 
 		let data = yield {
 			groups 		: App.mappers.getGroupsSidebar({activeId : group._id}),
 			breadcrumbs	: App.mappers.getBreadcrumbs(group._id),
-			goods 		: App.mappers.fetchGoodsByGroupId(group._id)
+			goods 		: App.mappers.fetchGoodsByGroupId(group._id, basket)
 		};
 
 
