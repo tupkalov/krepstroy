@@ -1,10 +1,16 @@
 mixin nav
+	-
+		var navs = [
+			{path : '/', name : 'Главная'},
+			{path : '/news', name : "Новости"},
+			{path : '/contacts', name : "Контакты"},
+		];
+
 	.nav
-		.nav__link.nav__link_current
-			a(href='/') Главная
-		.nav__link.nav__link
-			a(href='/news') Новости
-		.nav__link.nav__link
-			a(href='/certificates') Сертификаты
-		.nav__link.nav__link
-			a(href='/contacts') Контакты
+		each nav in navs
+			.nav__link(
+				class={
+					nav__link_current : request.path == nav.path
+				}
+			)
+				a(href=nav.path) #{nav.name}

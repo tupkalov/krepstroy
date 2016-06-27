@@ -13,11 +13,13 @@ export class Order{
 		this.el = el;
 		this.list = el.querySelector('.' + listClassName);
 		this.sumPrice = el.querySelector('.' + sumClassName + ' .' + priceClassName);
-		this.items = Array.from(this.list.querySelectorAll('.' + itemClassName));
+		if(this.list){
+			this.items = Array.from(this.list.querySelectorAll('.' + itemClassName));
 
-		this.list.addEventListener('change', e => this.calc(), false);
+			this.list.addEventListener('change', e => this.calc(), false);
 
-		this.calc();
+			this.calc();
+		}
 	}
 
 	calc () {

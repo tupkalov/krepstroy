@@ -22,7 +22,7 @@ var plumber = require('gulp-plumber');
 var watchify    = require('watchify');
 // Input file.
 watchify.args.debug = true;
-var bundler = watchify(browserify('js/src/index.js', watchify.args));
+var bundler = watchify(browserify('source/index.js', watchify.args));
 
 // Babel transform
 bundler.transform(babelify.configure({

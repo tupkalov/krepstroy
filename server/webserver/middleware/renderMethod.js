@@ -5,9 +5,10 @@ module.exports = (request, response) => {
 	return function (name, options, ...args) {
 		let basket = request.session.basket || [];
 		options = Object.assign(
-			{basket},
+			{basket, request},
 			options
 		)
+
 		return _super.call(response, name, options, ...args);
 	}
 }

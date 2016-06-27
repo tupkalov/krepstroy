@@ -1,7 +1,10 @@
 let map = {
-	'get /' : require('./root'),
-	'get /cat/:alias' : require('./cat'),
-	'use /basket' : require('./basket')
+	'get /' 			: require('./root'),
+	'get /cat/:alias' 	: require('./cat'),
+	'use /basket' 		: require('./basket'),
+	'use /order' 		: require('./order'),
+	'get /news'			: require('./news'),
+	'use /contacts'		: require('./contacts')
 };
 
 const co = require('co');
@@ -18,12 +21,14 @@ module.exports = app => {
 		let handler = map[key];
 
 		if(handler.constructor.name === 'GeneratorFunction'){
-			handler = (req, res, next) => {
+			app[method](url, (req, res, next) => {
 				co(handler, req, res, next).catch(next)				
-			}
-		}
+			})
+		}else{
 
-		app[method](url, handler);
+			app[method](url, handler);
+
+		}
 	}
 
 

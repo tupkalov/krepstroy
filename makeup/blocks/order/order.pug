@@ -1,16 +1,19 @@
-mixin order
+mixin order(orderData)
 	.order
-		.order__list
-			each item in orderData
-				.order__item(data-id=item.id)
-					.order__del &times;
+		if orderData.length
+			.order__list
+				each item in orderData
+					.order__item(data-id=item.id)
+						.order__del &times;
 
-					.order__title 
-						.order__title-text #{item.good.name}
-						.order__cid #{item.good.cid}
-					.order__price #{item.good.price}
-					.order__counter
-						+counter(`items[${item.id}][count]`, item.count)
+						.order__title 
+							.order__title-text #{item.good.name}
+							.order__cid #{item.good.cid}
+						.order__price #{item.good.price}
+						.order__counter
+							+counter(`items[${item.id}][count]`, item.count)
 
-		.order__sum
-			.order__price
+			.order__sum
+				.order__price
+		else
+			.order__message Корзина пуста

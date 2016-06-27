@@ -1,6 +1,6 @@
 const co = require('co');
 
-module.exports = co.wrap(function *(req, res, next){
+module.exports = function *(req, res, next){
 	
 	let data = yield {
 		groups 		: App.mappers.getFirstLevelGroups(),
@@ -8,4 +8,4 @@ module.exports = co.wrap(function *(req, res, next){
 	};
 
 	res.render('index', data);
-});
+};
