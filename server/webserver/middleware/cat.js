@@ -26,6 +26,7 @@ module.exports = co.wrap(function *(req, res, next){
 		};
 
 
+
 		res.render('subcat', data);
 
 	}

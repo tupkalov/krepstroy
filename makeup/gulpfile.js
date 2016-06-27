@@ -1,13 +1,10 @@
 var gulp = require('gulp');  
-var concat = require('gulp-concat');
 
 var exorcist = require('exorcist');
 
 var browserify = require('browserify');
 var babelify = require('babelify');
-var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
-var sourcemaps = require('gulp-sourcemaps');
 
 var pug = require("gulp-pug");
 
@@ -17,44 +14,42 @@ var sourcemaps = require('gulp-sourcemaps');
 //var lr = require('tiny-lr');
 var livereload = require('gulp-livereload');
 
-var connect = require('connect');
-var serveStatic = require('serve-static');
-
 var plumber = require('gulp-plumber');
 //var server = lr();
+// ////////////////////////////////////////////
+// ////////////////////////////////////////////
+// ////////////////////////////////////////////
+var watchify    = require('watchify');
+// Input file.
+watchify.args.debug = true;
+var bundler = watchify(browserify('js/src/index.js', watchify.args));
 
-gulp.task('scripts', function() {  
+// Babel transform
+bundler.transform(babelify.configure({
+    sourceMapRelative: '/ttttt'
+}));
 
-/*    var bundler = browserify({
-        entries: 'js/src/index.js',
-        debug: true
-    });
-    bundler.transform(babelify);
+// On updates recompile
+bundler.on('update', bundle);
 
-    bundler.bundle()
-        .on('error', function (err) { console.error(err); })
-            .pipe(source('index.js'))
-            .pipe(buffer())
-            .pipe(gulp.dest('build'))
-            .pipe(sourcemaps.init({ includeContent : false, sourceRoot : '..'}))
-            .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest('build'))
+function bundle() {
 
-        .pipe(exorcist('build/app.js.map', '', '..'))
-        .pipe(source('app.js'))
-        .pipe(buffer())
-        .pipe(gulp.dest('build'))*/
+    console.log('Compiling JS...');
 
-
-      return browserify({ debug: true })
-        .transform(babelify)
-        .require('./source/index.js', { entry: true })
-        .bundle()
-        .on('error', function (err) { console.error(err); })
+    return bundler.bundle()
+        .on('error', function (err) {
+            console.log(err);
+        })
+        .pipe(exorcist('build/index.js.map', 'index.js.map', '..'))
         .pipe(source('index.js'))
-        .pipe(gulp.dest('./build'))
-        .pipe(livereload());
-})
+        .pipe(gulp.dest('build'))
+}
+gulp.task('scripts', function () {
+    return bundle();
+});
+// ////////////////////////////////////////////
+// ////////////////////////////////////////////
+// ////////////////////////////////////////////
 
 gulp.task('styles', function() {  
     gulp.src(['styles/index.styl'])
@@ -77,7 +72,6 @@ gulp.task('templates', function(){
 gulp.task('watch', function() {
     livereload.listen();
 
-    gulp.watch(['js/src/**/*.js', 'blocks/**/*.js'], ['scripts'])
     gulp.watch(['styles/**/*.styl', 'blocks/**/*.styl'], ['styles'])
     gulp.watch(['templates/**/*.pug', 'blocks/**/*.pug'], ['templates'])
 
