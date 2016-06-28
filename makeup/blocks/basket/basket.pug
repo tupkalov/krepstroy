@@ -1,7 +1,14 @@
 mixin basket(count)
-	.basket
+	a.basket(
+		class = {basket_empty : count}
+		href="/order"
+	)
 		.basket__wrapper.__wrapper
 			.basket__box
 				.basket__box__logo
-				.basket__box__text в корзине #{count} товаров
+				.basket__box__text
+					if(count) 
+						| В корзине товаров: #{count}
+					else
+						| Корзина пуста
 				.basket__box__count #{count}

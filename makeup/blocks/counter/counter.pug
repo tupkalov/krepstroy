@@ -1,5 +1,5 @@
-mixin counter(name, value)
-	.counter
+mixin counter(name, value, center)
+	.counter(class={counter_center : center})
 		input.counter__input(value=(value || 1) name=name)
 		.counter__minus
 		.counter__plus

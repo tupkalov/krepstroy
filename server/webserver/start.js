@@ -1,5 +1,6 @@
 const express = require('express'),
 	  session = require('express-session');
+
 	  
 module.exports = config => 
 	new Promise((resolve, reject) => {
@@ -14,6 +15,11 @@ module.exports = config =>
 		app.set('view engine', 'js');
 		app.set('views', __appdir + '/' + config.viewsDir);
 
+		app.use(session({
+			secret : 'KrepSpbRu',
+			resave : true,
+			saveUninitialized : true
+		}));
 		require('./middleware')(app);
 
 		app.listen(config.port, () => {

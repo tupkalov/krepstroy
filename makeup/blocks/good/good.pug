@@ -2,16 +2,22 @@
 	var defaultImage="/img/defaultGoodImage.jpg"
 
 mixin good(goodData)
-	.good-item
+	.good-item(
+		data-id=goodData._id.toString()
+		class={
+			'good-item_buyed' : goodData.inBasket
+		}
+	)
 		.good-item__first
 			.good-item__image
 				if goodData.photo
 					img(src=goodData.photo)
 				else
-					| Нетфото
+					| Нет фото
 		.good-item__second
 			.good-item__title= goodData.name
 			.good-item__cid= goodData.cid
+		//
 			if goodData.status === 1
 				.good-item__status В наличии
 			else
@@ -21,5 +27,5 @@ mixin good(goodData)
 			.good-item__price= goodData.price
 			.good-item__measure за #{goodData.measure}
 			.good-item__counter
-				+counter
-			button.good-item__button В корзину
+				+counter(null,null,true)
+			button.good-item__button

@@ -3,13 +3,13 @@ mixin groups(groups, options)
 		each val in groups
 			.groups__item(
 				class={
-					"groups__item_open" : val && val.open,
+					"groups__item_open" : val && val.opened,
 					"groups__item_active":val && val.active
 				}
 			)
 				a.groups-item(
 					href=`/cat/${val.alias}` 
-					class=val&&val.open ? "groups-item_open":""
+					class=val&&val.opened ? "groups-item_open":""
 					class=val&&val.active ? "groups-item_active":""
 				)
 					.groups-item__ico
@@ -24,7 +24,7 @@ mixin groups(groups, options)
 								.groups-sub__item
 									a.groups-subitem(
 										href=`/cat/${sub.alias}` 
-										class=sub.active ? 'groups-subitem_active':''
+										class={'groups-subitem_active':sub.active}
 									)
 										.groups-subitem__name= sub.name
 					

@@ -2,10 +2,11 @@ extends ../layout
 
 block content
 	h2 Оформить заказ
-	form.order-layout(action="/order" method="POST")
-		.order-layout__left
-			+order(orderData)
+	form.order-layout(action="/order/send" method="POST")
+		if basket.length
+			.order-layout__left
+				+order(basket)
 
-		.order-layout__main
-			+orderForm
-		
+			.order-layout__main
+				+orderForm
+		.order-layout__message Корзина пуста		

@@ -1,6 +1,10 @@
 let map = {
-	'/' : require('./root'),
-	'/cat/:alias' : require('./cat')
+	'get /' 			: require('./root'),
+	'get /cat/:alias' 	: require('./cat'),
+	'use /basket' 		: require('./basket'),
+	'use /order' 		: require('./order'),
+	'get /news'			: require('./news'),
+	'use /contacts'		: require('./contacts')
 };
 
 const co = require('co');
@@ -8,19 +12,22 @@ const co = require('co');
 module.exports = app => {
 
 	app.use((req, res, next) => {
-		req.render = require('./renderMethod');
-		next();
+			res.render = require('./renderMethod')(req, res);
+			next();
 	});
 
-	for(let url in map){
-		let handler = map[url];
+	for(let key in map){
+		let [method, url] = key.split(' ');
+		let handler = map[key];
 
-		if(typeof handler === 'function'){
-			app.get(url, (req, res, next) => 
+		if(handler.constructor.name === 'GeneratorFunction'){
+			app[method](url, (req, res, next) => {
 				co(handler, req, res, next).catch(next)				
-			);
+			})
 		}else{
-			app.use(url, handler);
+
+			app[method](url, handler);
+
 		}
 	}
 
@@ -35,6 +42,3 @@ module.exports = app => {
 	})
 
 }
-
-
-
