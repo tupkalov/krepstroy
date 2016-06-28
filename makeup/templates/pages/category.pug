@@ -1,0 +1,21 @@
+
+include ../data/groups
+-
+	var obj = groups.find(obj => obj.id === 4);
+	obj && (obj.active = true);
+
+	var breadcrumbs = [
+		{
+			name : "Болты, гайки, шпильки, винты",
+			href : "category.html"
+		}
+	]
+
+
+ 
+
+
+include ../data/tilesCategory
+
+
+include ../layouts/category.pug 

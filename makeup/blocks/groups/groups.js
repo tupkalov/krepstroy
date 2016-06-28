@@ -2,8 +2,10 @@ import {$} from "../../js/src/libs";
 
 const __itemClass = "groups__item",
 	  __itemActiveClass = 'groups__item_active',
+	  __itemOpenClass = 'groups__item_open',
 	  itemClass = 'groups-item',
-	  itemActiveClass = 'groups-item_active';
+	  itemActiveClass = 'groups-item_active', 
+	  itemOpenClass = 'groups-item_open';
 
 export class Groups{
 
@@ -13,12 +15,13 @@ export class Groups{
 			if($(e.target).closest(`.${itemClass}`).length === 0)
 				return;
 
-			$(e.currentTarget)
-				.toggleClass(__itemActiveClass)
-				.find('.' + itemClass)
-				.toggleClass(itemActiveClass)
 
-			if ($(e.currentTarget).has('__itemActiveClass'))
+			$(e.currentTarget)
+				.toggleClass(__itemOpenClass)
+				.find('.' + itemClass)
+				.toggleClass(itemOpenClass)
+
+			if ($(e.currentTarget).has(__itemOpenClass))
 				setTimeout(() => {
 					$(e.currentTarget).scrollintoview({
 					    direction: "vertical"

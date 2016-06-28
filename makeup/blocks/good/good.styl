@@ -1,0 +1,96 @@
+.good-item
+	display flex
+	flex-direction row
+	height 150px
+	padding 30px 0
+	border-bottom 1px solid $grayColor
+	position: relative
+		
+	&:last-child
+		border-bottom none
+
+	&__first
+		width 150px
+		padding-right 20px
+		
+	&__second
+		flex-grow 1
+		
+	&__third
+		width 100px
+		text-align right
+		position: relative
+		flex-shrink 0
+		
+
+	&__image
+		height 150px
+		width 150px
+		display flex
+		justify-content center
+		align-items center
+		border-radius 10px
+		border 1px solid $grayColor
+		color $grayColor
+		padding 10px
+		box-sizing border-box
+		overflow hidden
+		
+		img
+			max-width 100%
+			max-height 100%
+			
+	&__title
+		textFont()
+		
+	&__cid
+		smallFont()
+		margin-top 5px
+		color $disableFontColor
+		
+	&__status
+		position: absolute
+		bottom 30px
+		color $brightColor
+		smallFont()
+		
+		&::before
+			content ''
+			display inline-block
+			width .5em
+			height .5em
+			background-color $brightColor
+			border-radius 100%
+			margin-right 5px
+			vertical-align middle
+			
+			^[1]_no&
+				background-color $activeColor
+				
+		&_no
+			color $activeColor
+				
+
+	&__price
+		boldFont()
+		color $brightColor
+		
+		&:empty
+			display none
+		
+		&::after
+			content ' \20BD'
+			font-size .7em
+
+	&__measure
+		color $disableFontColor
+		smallFont()
+			
+
+	&__button
+		position: absolute
+		bottom 0
+		width 100%
+		right 0
+		
+			

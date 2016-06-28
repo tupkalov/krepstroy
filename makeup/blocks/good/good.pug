@@ -1,0 +1,25 @@
+-
+	var defaultImage="/img/defaultGoodImage.jpg"
+
+mixin good(goodData)
+	.good-item
+		.good-item__first
+			.good-item__image
+				if goodData.photo
+					img(src=goodData.photo)
+				else
+					| Нетфото
+		.good-item__second
+			.good-item__title= goodData.name
+			.good-item__cid= goodData.cid
+			if goodData.status === 1
+				.good-item__status В наличии
+			else
+				.good-item__status.good-item__status_no Нет в наличии
+		.good-item__third
+			- var price = goodData.price + ' &#8381;';
+			.good-item__price= goodData.price
+			.good-item__measure за #{goodData.measure}
+			.good-item__counter
+				+counter
+			button.good-item__button В корзину

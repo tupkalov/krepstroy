@@ -5,13 +5,14 @@ groupsItem()
 	line-height $groupsItemHeight
 	padding 0 10px
 	text-decoration none
-	display block
+	display flex
+	flex-flow row nowrap
+	align-items center
 	position relative
 	
 
 .groups
 	width $sidebarWidth
-	smallFont()
 	
 	&__item
 		margin-bottom 5px
@@ -23,7 +24,7 @@ groupsItem()
 			position relative
 			overflow hidden
 			
-			^[1]_active &
+			^[1]_open &
 				height auto
 				opacity 1
 
@@ -44,6 +45,7 @@ groupsItem()
 		width $groupsItemHeight*.7
 		height $groupsItemHeight*.7
 		margin-right 10px
+		flex-shrink 0
 		
 		^[0]_active &
 			background-color $grayColor
@@ -51,26 +53,24 @@ groupsItem()
 
 	&__ico		
 	&__name
-		display inline-block
+		display block
 		vertical-align middle
 		line-height normal
 		
 	&__name
 		padding-top 5px
+		flex-grow 1
 
 	&__expand
 		width 1em
 		height 1em
-		position absolute
-		right 10px
-		top 50%
-		margin-top -.5em
 		
-		^[0]_active &
+		^[0]_open &
 			transform rotate(90deg)
 		
 .groups-sub
 	margin-top 5px	
+	margin-left 20px
 
 	&__item
 		margin-bottom 5px
@@ -81,6 +81,11 @@ groupsItem()
 .groups-subitem
 	background-color $lightColor
 	groupsItem()
+	padding-left 30px
+
+	&_active
+		background-color $brightColor
+		
 	
 	&__name
 		display inline-block

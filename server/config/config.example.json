@@ -1,6 +1,11 @@
 {
-	"port" : 9000,
+	"port" : 9001,
 
-	// Директория статики относительно корня сервера
-	"staticDir" : "../static"
+	"viewsDir" : "../static/viewjs",
+	"mongo" : {
+		"host" 	: "localhost",
+		"db"	: "krepstroy",
+		"username"	: "krepsite",
+		"password"	: ""
+	}
 }

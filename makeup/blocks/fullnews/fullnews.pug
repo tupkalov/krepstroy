@@ -1,0 +1,10 @@
+mixin fullnews(newsData)
+	each data in newsData
+		+fullnewsItem(data)
+
+mixin fullnewsItem(data)
+	.fullnews-item
+		a.fullnews-item__anchor(id=data.alias)
+		.fullnews-item__date= data.date
+		.fullnews-item__title=data.title
+		.fullnews-item__desc !{data.desc}

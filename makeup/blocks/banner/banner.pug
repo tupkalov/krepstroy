@@ -1,11 +1,12 @@
-.banner
-  .banner__wrapper
-    each val in ['90, 115, 155', '120, 115, 155', '90, 115, 55']
-      .banner__item
-        .banner-item(style=`background: linear-gradient(to bottom, rgba(${val}, 0.8), rgba(${val}, 0.4)), url(/img/testbanner.jpg) no-repeat center; background-size: cover`)
-          .banner-item__wrapper.__wrapper
-            .banner-item__text
-              .banner-item__text__header
-                | Тестовый текст (#{val})!
-              .banner-item__text__text
-                | Рекламирующий, например, распродажу.
+mixin banner
+  .banner
+    .banner__wrapper
+      each val in ['90, 115, 155', '120, 115, 155', '90, 115, 55']
+        .banner__item
+          .banner-item(style=`background: linear-gradient(to bottom, rgba(${val}, 0.8), rgba(${val}, 0.4)), url(/img/testbanner.jpg) no-repeat center; background-size: cover`)
+            .banner-item__wrapper.__wrapper
+              .banner-item__text
+                .banner-item__text__header
+                  | Тестовый текст (#{val})!
+                .banner-item__text__text
+                  | Рекламирующий, например, распродажу.

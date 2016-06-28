@@ -1,0 +1,39 @@
+include ../blocks/index 
+
+doctype html
+html
+	head
+		title КРЕПСТРОЙ
+		link(rel='stylesheet', type='text/css', href='/build/index.css')
+		script(type="text/javascript", src="/build/app.js")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+	body 
+		+basket(req && req.session.basket ? req.session.basket.length : 0)
+
+		//- header
+		.header
+			.header__wrapper.__wrapper
+				//-.search
+					form.search__form(method='post', action='/search')
+						input.search__form__input(type='text', placeholder='Поиск по наименованию')
+						input.search__form__submit(type='submit', value='send')
+				.logo
+				+nav
+				+phone
+
+
+		block banner
+		.main
+			.main__wrapper.__wrapper
+				block column
+					.main-container
+						block content
+
+		.footer
+			.footer__wrapper.__wrapper
+				+nav
+				+phone
+				.copyright
+					| &copy; 2004&ndash;2014
+					| &laquo;Крепстрой&raquo;
+					| профессиональный крепёж

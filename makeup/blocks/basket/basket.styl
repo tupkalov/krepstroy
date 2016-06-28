@@ -1,4 +1,7 @@
 .basket
+	position relative
+	z-index 10
+
 	&__box
 		background-color $brightColor
 		position absolute
@@ -8,6 +11,10 @@
 		line-height 33px
 		padding:10px 10px 10px 50px
 		border-radius 0 0 10px 10px
+		cursor: pointer
+		
+		&:hover
+			background-color $activeColor
 		
 		&__logo
 			background transparent url('/img/basket.png') center no-repeat

@@ -1,0 +1,7 @@
+mixin breadcrumbs(path)
+	.breadcrumbs
+		.breadcrumbs__item
+			a(href="/") Главная
+		each val in path
+			.breadcrumbs__item
+				a(href=val.href)= val.name

@@ -1,0 +1,26 @@
+.nav
+	boldFont() 
+	white-space nowrap
+	display flex
+	flex-flow row wrap
+	justify-content space-between
+	width 460px
+	max-width 100%
+	margin-left : 290px
+	position absolute
+	bottom 20px
+	
+	&__link
+		display 		: inline-block
+		margin-right 20px
+		> a
+			text-decoration	: none
+			color 			: $darkFontColor
+		
+		&_current
+			> a
+				color $disableFontColor
+				
+
+	@media screen and (max-width: $sm)
+		margin-left 0

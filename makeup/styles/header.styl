@@ -1,4 +1,7 @@
 .header
+	z-index 5
+
+.header
 .footer
 	margin : 0
 	
@@ -26,56 +29,8 @@
 		bottom 90px
 		width 150px
 	
-.nav
-	boldFont() 
-	white-space nowrap
-	display flex
-	flex-flow row wrap
-	justify-content space-between
-	width 460px
-	max-width 100%
-	margin-left : 300px
-	position absolute
-	bottom 20px
-	
-	&__link
-		display 		: inline-block
-		margin-right 20px
-		> a
-			text-decoration	: none
-			color 			: $darkFontColor
-		
-		&_current
-			> a
-				color $disableFontColor
-				
 
-	@media screen and (max-width: $sm)
-		margin-left 0
 		
-
-.phone
-	position absolute
-	right 0px
-	bottom 20px
-	margin-bottom -2px
-	color $darkFontColor
-	&__pre
-		defaultFont()
-		font-size 1em
-		
-		margin-right 4px
-	&__main
-		headerFont()
-		font-size 1.5em
-		
-	@media screen and (max-width: $xs)
-		top auto
-		bottom 70px
-		
-	@media screen and (max-width: $xxs)
-		bottom 85px
-		font-size .8em
 
 
 $searchHeight = 27px	

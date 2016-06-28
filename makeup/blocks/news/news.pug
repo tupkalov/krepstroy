@@ -1,0 +1,11 @@
+mixin news(newsData)
+	h1 Что нового:
+	each item in newsData
+		.news(
+			data-id=item.id
+		)
+			.news__date #{item.date}
+			a.news__title(
+				href="/news/" + item.id + '/' + item.alias
+			) #{item.title}
+			.news__text #{item.short}

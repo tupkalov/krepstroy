@@ -1,0 +1,23 @@
+
+.phone
+	position absolute
+	right 0px
+	bottom 20px
+	margin-bottom -2px
+	color $darkFontColor
+	&__pre
+		defaultFont()
+		font-size 1em
+		
+		margin-right 4px
+	&__main
+		headerFont()
+		font-size 1.5em
+		
+	@media screen and (max-width: $xs)
+		top auto
+		bottom 70px
+		
+	@media screen and (max-width: $xxs)
+		bottom 85px
+		font-size .8em

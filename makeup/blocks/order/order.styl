@@ -1,0 +1,79 @@
+$orderRightColumn = 120px
+
+.order 
+	
+	&__item
+		display flex
+		align-items top
+		position: relative
+		padding 10px 0
+		border-bottom 1px solid $grayColor
+
+		&:last-child
+			border-bottom none
+	&__del
+		position absolute
+		padding 10px
+		left -25px
+		top 0px
+		opacity: .7
+		cursor: pointer
+		
+		&:hover
+			opacity: 1
+			
+			& ~ ^[0]__title > ^[0]__title-text
+				text-decoration line-through
+
+	&__title
+		flex-grow 1
+		padding 0 10px 0 0
+		textFont()
+		
+	&__cid
+		font-size .8em
+		color $disableFontColor
+		
+	&__price
+		width 70px
+		text-align right
+		boldFont()
+		padding-right 10px
+		white-space nowrap
+		
+		&::after
+			content ' \20BD'
+			font-size .85em
+			
+	&__counter
+		margin-top -5px
+		padding-top 3px
+		width $orderRightColumn
+		flex-shrink 0
+		
+
+		&::before
+			content '\D7'
+			float left
+			margin-top 3px
+			padding-right 10px
+			
+
+	&__sum
+		border-top 1px solid $brightColor
+		padding-top 20px
+		padding-right $orderRightColumn
+		display: flex
+		flex-flow row-reverse nowrap
+		font-weight 600
+		font-size 1.2em
+
+		&::after
+			text-align left
+			flex-grow 1
+			width 200px
+			content "Сумма"
+			font-size 1.2em
+			float left
+			padding-right 5px
+		

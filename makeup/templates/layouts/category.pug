@@ -1,0 +1,12 @@
+extends ../layout
+
+block prepend column
+	.sidebar
+		+groups(groups)
+
+block content
+	.block.block_breasdcrumbs
+		+breadcrumbs(breadcrumbs)
+
+	.block.block_tiles
+		+tiles(tilesCategory, {left : true})

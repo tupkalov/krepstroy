@@ -1,0 +1,16 @@
+.breadcrumbs
+	smallFont() 
+	padding-bottom 20px
+	
+	&__item
+		display inline
+
+		&::after
+			margin 0 5px
+			text-decoration none
+			content '\000BB'
+			display inline
+			
+			^[1]:last-child&
+				display none
+					
