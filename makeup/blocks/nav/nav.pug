@@ -10,7 +10,7 @@ mixin nav
 		each nav in navs
 			.nav__link(
 				class={
-					nav__link_current : request.path == nav.path
+					nav__link_current : request.baseUrl + request.path == nav.path
 				}
 			)
 				a(href=nav.path) #{nav.name}

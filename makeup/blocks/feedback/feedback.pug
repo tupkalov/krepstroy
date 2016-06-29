@@ -1,13 +1,13 @@
 mixin feedback
-	form.feedback(action="/feedback" method="POST")
+	form.feedback(action="/contacts/send" method="POST")
 		.feedback__field
 			label.feedback__label(for="who") Контактное лицо
-			input.feedback__input(id="who" required)
+			input.feedback__input(id="who" name="who" required)
 		.feedback__field
 			label.feedback__label(for="message") Сообщение
-			textarea.feedback__input(id="message" required)
+			textarea.feedback__input(id="message" name="message" required)
 		.feedback__field
 			label.feedback__label(for="contacts") Контактные данные
-			textarea.feedback__input(id="contacts" required)
+			textarea.feedback__input(id="contacts" name="contacts" required)
 
 		button.feedback__submit(type="submit") Отправить
