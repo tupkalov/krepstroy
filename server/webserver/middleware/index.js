@@ -7,14 +7,22 @@ let map = {
 	'use /contacts'		: require('./contacts')
 };
 
-const co = require('co');
+const co = require('co'),
+	  bodyParser = require('body-parser');
 
 module.exports = app => {
 
-	app.use((req, res, next) => {
-			res.render = require('./renderMethod')(req, res);
-			next();
-	});
+
+
+app.use((req, res, next) => {
+	res.render = require('./renderMethod')(req, res);
+	res.sendJson = require('./sendJson');
+	next();
+});
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+
 
 	for(let key in map){
 		let [method, url] = key.split(' ');

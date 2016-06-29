@@ -22,5 +22,6 @@ global.App = {
 			console.log(message);
 	}
 }
+App.mail = require('./mail');
 
 App.server.start(App.config);

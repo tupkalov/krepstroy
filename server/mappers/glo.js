@@ -1,17 +1,15 @@
 module.exports = name =>
-	new Promise((res, rej) => {
-		MONGO.collection('glo').findOne({name})
+	MONGO.collection('glo').findOne({name})
 			.then(result => {
 				if(!result)
-					throw new AppError('Glo:NoDocument');
+					throw new AppError('Glo:NoDocument', {info : {name}});
 				else
-					res(result);
+					return result;
 			})
 
 			.catch(error => {
 				if(!(error instanceof AppError))
 					error = new AppError('InternalError', {error});
 
-				reject(error);
+				throw error;
 			})
-	})
