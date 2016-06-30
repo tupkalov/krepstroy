@@ -7,5 +7,17 @@
 		"db"	: "krepstroy",
 		"username"	: "krepsite",
 		"password"	: ""
+	},
+
+	"email" : {
+		"host" : ,
+		"port" : ,
+
+		//secure : true,
+
+		"auth" : {
+			"user" : ,
+			"pass" : 
+		}
 	}
 }

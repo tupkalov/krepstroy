@@ -11,7 +11,7 @@ mixin order(orderData)
 							.order__cid #{item.good.cid}
 						.order__price #{item.good.price}
 						.order__counter
-							+counter(`items[${item.id}][count]`, item.count)
+							+counter(`items[${item._id}][count]`, item.count)
 
 			.order__sum
 				.order__price
