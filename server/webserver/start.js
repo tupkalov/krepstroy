@@ -20,11 +20,16 @@ module.exports = config =>
 			resave : true,
 			saveUninitialized : true
 		}));
+		
 		require('./middleware')(app);
+
+		// ADMIN
+		require('./admin')(app);
 
 		app.listen(config.port, () => {
 			resolve()
 			console.log(`Server started on ${config.port}`)
 			process.emit('webserver');
-		})
+		});
+
 	});
