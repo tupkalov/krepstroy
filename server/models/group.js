@@ -22,6 +22,15 @@ schema.pre('validate', function(next){
 		this.parentId = null;
 	next();
 });
+
+schema.post('save', function(){
+	process.emit('recache');
+});
+schema.post('update', function(){
+	console.log('updcountate', ...arguments);
+	process.emit('recache');
+});
+
 let Model = mongoose.model('Group', schema)
 
 module.exports = Model;

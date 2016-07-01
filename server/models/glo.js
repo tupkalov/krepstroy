@@ -7,7 +7,8 @@ const required = true,
 
 
 let schema = mongoose.Schema({
-	name 	: {type : String, required, $p :{label : "Name (Зарезервированные имена на сервере)"}},
+	name 	: {type : String, required, $p :{display : 'e', label : "alias (Зарезервированные имена на сервере)"}},
+	description : {type : String, $p : {label : "Описание"}},
 	text 	: {type : String, $p : {label : "Текст", widget : 'textarea', display : 'e'}}
 }, {collection : 'glo'})
 
