@@ -20,22 +20,16 @@ module.exports = config =>
 			resave : true,
 			saveUninitialized : true
 		}));
-
-
-		require('coffee-script/register') // <-- This dependency is to be removed very soon. 
-		penguin = require('penguin')
-		admin = new penguin.Admin()
-		admin.setupApp(app)
-
-
 		
 		require('./middleware')(app);
 
-
+		// ADMIN
+		require('./admin')(app);
 
 		app.listen(config.port, () => {
 			resolve()
 			console.log(`Server started on ${config.port}`)
 			process.emit('webserver');
-		})
+		});
+
 	});
