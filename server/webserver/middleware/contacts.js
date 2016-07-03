@@ -27,7 +27,7 @@ router.post('/send', (req, res, next) => {
 	}else{
 
 		App.mail.send({
-			to : "tupkalov@gmail.com",
+			to : App.glo.manager,
 			subject : `Форма обратной связи от ${who}`,
 			text : `${who}:\n\n ${message}\n\n ${contacts}`
 		});

@@ -13,6 +13,11 @@ module.exports = function* fetchGroup (){
 			if(map[group._id])
 				group = Object.assign(map[group._id], group);
 
+			if(group.image && group.image.length)
+				group.image = group.image[0].path
+			else
+				delete group.image;
+
 			(parentMap[group.parentId] || (parentMap[group.parentId] = []))
 				.push(group);
 

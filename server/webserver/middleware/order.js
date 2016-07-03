@@ -11,18 +11,30 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/send', (req, res, next) => {
-	let {who, contacts, message} = req.body,
+	let {name, tel, organization, inn, additional} = req.body,
 		result, resultMessage;
 
-	if(!who || !contacts || !message){
+	if(!name || !tel || !organization){
 		result = false;
 		resultMessage = "Не все поля заполнены";
 	}else{
+		let basket = req.session.basket || (req.session.basket = []);
 
 		App.mail.send({
-			to : "tupkalov@gmail.com",
-			subject : `Форма обратной связи от ${who}`,
-			text : `${who}:\n\n ${message}\n\n ${contacts}`
+			to : App.glo.manager,
+			subject : `Новый заказ от ${name}`,
+			text : `Контактное лицо: ${name}\n` +
+				`Телефон: ${tel}\n` +
+				`Организация: ${organization}\n` +
+				`ИНН: ${inn}\n`+
+				`Дополнительно: ${additional}\n\n` +
+				`Заказ\n` +
+				basket.map(item => 
+					`${item.good.cid}\t${item.good.name}\t${item.count} x ${item.good.price}р.`
+				).join('\n')
+
+
+
 		});
 
 		result = true;

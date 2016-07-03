@@ -1,9 +1,16 @@
 module.exports = () =>
 	new Promise((res, rej) => {
 
-		MONGO.collection('groups').find({
-			disabled	: false
-		}).toArray((error, result) => {
+		MONGO.collection('groups').aggregate([{
+			$match : {disabled	: false}
+		}, {
+			$lookup : {
+				from : 'files',
+				localField : 'image',
+				foreignField : '_id',
+				as : 'image'
+			}
+		}]).toArray((error, result) => {
 			if(result)
 				res(result);
 			else if(err)
