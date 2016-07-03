@@ -10,12 +10,13 @@ mixin good(goodData)
 	)
 		.good-item__first
 			.good-item__image
-				if goodData.photo
-					img(src=goodData.photo)
+				if goodData.image
+					img(src='/'+goodData.image)
 				else
 					| Нет фото
 		.good-item__second
 			.good-item__title= goodData.name
+			.good-item__description!= goodData.description
 			.good-item__cid= goodData.cid
 		//
 			if goodData.status === 1
