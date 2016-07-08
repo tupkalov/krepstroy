@@ -9,7 +9,7 @@ const required = true,
 let schema = mongoose.Schema({
 
 	name 		: {type : String, required, $p:{label : "Наименование"}},
-	alias 		: {type : String, required, $p : {label : "Название на латинице для адресной строки"}},
+	//alias 		: {type : String, required, $p : {label : "Название на латинице для адресной строки"}},
 	description : {type : String, $p: {widget: 'textarea', display: 'e', label : "Описание в списке товаров"}},
 	disabled 	: {type : Boolean, $p : {label : "Отключить"}},
 	image 		: {type : mongoose.Schema.Types.ObjectId, ref: 'File', $p : {label : "Картинка для списка"}},
@@ -20,6 +20,14 @@ let schema = mongoose.Schema({
 })
 
 schema.virtual('$pTitle').get(function(){ return this.name })
+
+schema.post('save', function(){
+	process.emit('recache');
+});
+schema.post('remove', function(){
+	process.emit('recache');
+});
+
 
 let Model = mongoose.model('Good', schema)
 

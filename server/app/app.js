@@ -15,7 +15,11 @@ exports.start = config => {
 
 			res => {
 				process.emit('load');
+
 				initialize.start(config);
+				
+				process.on('recache', () => 
+					initialize.start(config))
 			},
 
 
