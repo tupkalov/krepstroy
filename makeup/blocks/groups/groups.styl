@@ -35,9 +35,10 @@ groupsItem()
 	groupsItem()
 
 	&_active
-		background-color $brightColor
-		color $grayColor
-		fill $grayColor
+		background-color $activeColor
+		color white
+		fill white
+
 	
 	&__ico
 		border-radius 100%
@@ -48,7 +49,8 @@ groupsItem()
 		flex-shrink 0
 		
 		^[0]_active &
-			background-color $grayColor
+			background-color white
+			
 			
 
 	&__ico		
@@ -85,7 +87,7 @@ groupsItem()
 	padding-left 30px
 
 	&_active
-		background-color $brightColor
+		background-color $activeColor
 		
 	
 	&__name
