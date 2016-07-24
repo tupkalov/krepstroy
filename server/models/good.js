@@ -14,7 +14,7 @@ let schema = mongoose.Schema({
 	cid 		: {type : String, $p : {label : "Идентификатор из 1С"}},
 	disabled 	: {type : Boolean, $p : {label : "Отключить"}},
 	image 		: {type : mongoose.Schema.Types.ObjectId, ref: 'File', $p : {label : "Картинка для списка"}},
-	groupId 	: {type : ObjectId, ref : 'Group', $p: {widget: 'select'}, $p : {label : "Родительская категория"}},
+	groupId 	: {type : ObjectId, ref : 'Group', $p: {widget: 'select', label : "Родительская категория"}},
 	ordr 		: {type : Number, $p : {label : "Рейтинг для сортировки"}},
 	price 		: {type : Number, $p : {label : "Цена"}},
 	measure 	: {type : String, $p : {label : "Единица измерения"}}
