@@ -10,6 +10,7 @@ module.exports = app => {
 	require('coffee-script/register') // <-- This dependency is to be removed very soon. 
 	penguin = require('penguin')
 	admin = new penguin.Admin({	
+		modelsPath : __dirname + '/../models',
 		fileManager: true,
 		indexTitle: 'Админка',
 		vModels: {
