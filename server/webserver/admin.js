@@ -1,9 +1,7 @@
 const express = require('express');
 const basicAuth = require('basic-auth-connect');
 
-module.exports = app => {
-	app.use('/admincdn', express.static("admincdn"));
-	
+module.exports = app => {	
 	app.use('/admin', basicAuth('admin', 'KrepSpbRu'));
 
 	var mongoose = require('mongoose');
