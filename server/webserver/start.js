@@ -25,6 +25,21 @@ module.exports = config =>
 
 		// ADMIN
 		require('./admin')(app);
+		
+		app.use((req, res, next) => {
+			next(new AppError('PageUndefined', {status : 404}))
+		});
+
+
+		// ERROR HANDLING
+		app.use((err,req,res,next) => {
+			if(!(err instanceof AppError))
+				App.log(err);
+			
+			let status = err.status || 500;
+			res.status(status);
+			res.render('errorPage', {status});
+		})
 
 		app.listen(config.port, () => {
 			resolve()
