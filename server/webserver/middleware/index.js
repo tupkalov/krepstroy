@@ -4,7 +4,9 @@ let map = {
 	'use /basket' 		: require('./basket'),
 	'use /order' 		: require('./order'),
 	'get /news'			: require('./news'),
-	'use /contacts'		: require('./contacts')
+	'use /contacts'		: require('./contacts'),
+	'post /search'		: require('./search'),
+	'get /good/:id'		: require('./good')
 };
 
 const co = require('co'),
@@ -14,14 +16,14 @@ module.exports = app => {
 
 
 
-app.use((req, res, next) => {
-	res.render = require('./renderMethod')(req, res);
-	res.sendJson = require('./sendJson');
-	next();
-});
+	app.use((req, res, next) => {
+		res.render = require('./renderMethod')(req, res);
+		res.sendJson = require('./sendJson');
+		next();
+	});
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({ extended: false }))
+	app.use(bodyParser.json());
 
 
 	for(let key in map){
@@ -39,10 +41,15 @@ app.use(bodyParser.json());
 		}
 	}
 
+	app.use((req, res, next) => {
+		next(new AppError('PageUndefined', {status : 404}))
+	});
+
 
 	// ERROR HANDLING
 	app.use((err,req,res,next) => {
-		App.log(err);
+		if(!(err instanceof AppError))
+			App.log(err);
 		
 		let status = err.status || 500;
 		res.status(status);

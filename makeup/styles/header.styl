@@ -10,7 +10,7 @@
 		position relative
 
 .logo
-	background 	: url(/img/logo2.png) no-repeat bottom
+	background 	: url(/img/logo2.png) no-repeat left bottom
 	background-size contain
 	height		: 90px
 	width		: 230px 
@@ -19,7 +19,9 @@
 	position absolute
 	
 	@media screen and (max-width: $sm)
-		bottom 70px
+		bottom 55px
+		height 80px
+		
 		
 	@media screen and (max-width: $xxs)
 		bottom 80px
@@ -29,53 +31,6 @@
 		bottom 90px
 		width 150px
 	
-
-		
-
-
-$searchHeight = 27px	
-.search
-	width 300px
-	background-color $darkGrayColor
-	border-radius 6px
-	line-height $searchHeight
-	position: relative
-	top 20px
-	
-	&__form
-		&__input
-			padding: 0 $searchHeight+5px 0 10px
-			box-sizing border-box
-			width 100%
-			
-			&::-webkit-input-placeholder
-				color: $grayFontColor
-
-		&__input
-		&__submit
-			background-color transparent
-			border 0
-			font inherit
-				
-			&:focus
-				outline none
-			
-		&__submit
-			font-size 0
-			background transparent url('/img/search.png') center no-repeat
-			padding 0
-			width $searchHeight
-			height $searchHeight
-			position: absolute
-			z-index 2
-			right 2px
-			top 0px
-	
-	@media screen and (max-width: $xs)
-		width 200px
-		
-	@media screen and (max-width: $xxxs)
-		width 150px
 
 		
 $footerBottom = 30px

@@ -3,6 +3,7 @@
 
 mixin good(goodData)
 	.good-item(
+		id=goodData._id.toString()
 		data-id=goodData._id.toString()
 		class={
 			'good-item_buyed' : goodData.inBasket

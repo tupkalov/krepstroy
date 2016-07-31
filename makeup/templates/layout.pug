@@ -11,13 +11,9 @@ html
 	body 
 		+basket(basket && basket.length)
 
-		//- header
 		.header
 			.header__wrapper.__wrapper
-				//-.search
-					form.search__form(method='post', action='/search')
-						input.search__form__input(type='text', placeholder='Поиск по наименованию')
-						input.search__form__submit(type='submit', value='send')
+				+search
 				a.logo(href="/")
 				+nav
 				+phone
@@ -35,6 +31,6 @@ html
 				+nav
 				+phone
 				.copyright
-					| &copy; 2004&ndash;2014
+					| &copy; 2004&ndash;2016
 					| &laquo;Крепстрой&raquo;
 					| профессиональный крепёж

@@ -1,0 +1,70 @@
+
+$searchHeight = 27px	
+.search
+	width 300px
+	background-color $darkGrayColor
+	border-radius 6px
+	line-height $searchHeight
+	position: relative
+	top 20px
+	
+	&__form
+		
+	&__input
+		padding: 0 $searchHeight+5px 0 10px
+		box-sizing border-box
+		width 100%
+		
+		&::-webkit-input-placeholder
+			color: $grayFontColor
+
+	&__input
+	&__submit
+		background-color transparent
+		border 0
+		font inherit
+			
+		&:focus
+			outline none
+		
+	&__submit
+		font-size 0
+		background transparent url('/img/search.png') center no-repeat
+		padding 0
+		width $searchHeight
+		height $searchHeight
+		position: absolute
+		z-index 2
+		right 2px
+		top 0px
+		
+	&__list
+		display none
+		position absolute
+		z-index 9
+		width 300px
+		background white
+		border 1px solid #eee
+		box-sizing border-box
+		
+		^[0]_list-visible &
+			display block
+		
+	&__list-item
+		padding 5px 10px
+		display block
+		white-space nowrap
+		width 100%
+		overflow hidden
+		text-overflow ellipsis
+		box-sizing border-box
+		border-bottom 1px solid #eee;
+		
+		&:last-child
+			border-bottom none;
+	
+	@media screen and (max-width: $xs)
+		width 200px
+		
+	@media screen and (max-width: $xxxs)
+		width 150px

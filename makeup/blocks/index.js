@@ -15,3 +15,5 @@ document.addEventListener("DOMContentLoaded", Goods.start)
 
 import {Basket} from "./basket/basket"
 document.addEventListener("DOMContentLoaded", Basket.start) 
+import {Search} from "./search/search"
+document.addEventListener("DOMContentLoaded", Search.start) 
