@@ -16,10 +16,10 @@ class eMail {
 	}
 
 
-	send ({from, to, subject, text}) {
+	send ({from, to, subject, text, attachments}) {
 		return new Promise((resolve, reject) => this.transporter.sendMail({
 				from : from || (from = App.config.email.from),
-				to, subject, text
+				to, subject, text, attachments
 			}, (error, res) => 
 				error ? reject(error) : resolve(res)
 			)

@@ -9,6 +9,7 @@ global.App = {
 	server : require('./app'),
 	config : require('./config/config.json'),
 	mappers : requireDir('./mappers'),
+	services : requireDir('./services'),
 
 
 	log : message => {
