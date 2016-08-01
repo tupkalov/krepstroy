@@ -10,41 +10,40 @@ router.get('/', (req, res, next) => {
 
 
 
-router.post('/send', (req, res, next) => {
-	let {name, tel, organization, inn, additional} = req.body,
-		result, resultMessage;
+router.post('/send', function(req, res, next){
 
-	if(!name || !tel || !organization){
-		result = false;
-		resultMessage = "Не все поля заполнены";
-	}else{
-		let basket = req.session.basket || (req.session.basket = []);
+	co(function* () {
+		let {name, tel, organization, inn, address, additional} = req.body,
+			result, resultMessage;
 
-		App.mail.send({
-			to : App.glo.manager,
-			subject : `Новый заказ от ${name}`,
-			text : `Контактное лицо: ${name}\n` +
-				`Телефон: ${tel}\n` +
-				`Организация: ${organization}\n` +
-				`ИНН: ${inn}\n`+
-				`Дополнительно: ${additional}\n\n` +
-				`Заказ\n` +
-				basket.map(item => 
-					`${item.good.cid}\t${item.good.name}\t${item.count} x ${item.good.price}р.`
-				).join('\n')
+		if(!name || !tel || !organization || !address){
+			result = false;
+			resultMessage = "Не все поля заполнены";
+		}else{
+			let basket 	= req.session.basket || (req.session.basket = []);
+			let order 	= yield App.services.order({
+				basket, name, tel, organization, inn, additional
+			})
 
+			App.mail.send({
+				to : App.glo.manager,
+				subject : `Новый заказ #${order.id} от ${name}`,
+				text : order.emailText,
+				attachments : [{
+					path : order.fileUrl,
+	            	contentType: 'text/xml'
+				}]
+			});
 
+			result = true;
+			resultMessage = "Сообщение отправлено";
 
-		});
+		}
 
-		result = true;
-		resultMessage = "Сообщение отправлено";
-
-	}
-
-	if(req.xhr){
-		res.sendJson(result, resultMessage);
-	}else{
-		res.render('message', {message : resultMessage});
-	}
+		if(req.xhr){
+			res.sendJson(result, resultMessage);
+		}else{
+			res.render('message', {message : resultMessage});
+		}
+	}).catch(next);
 })
