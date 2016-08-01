@@ -75,7 +75,7 @@ module.exports = co.wrap(function* ({
 					<ТОВАР_ID>"${item.good.cid}"</ТОВАР_ID>
 					<КОЛИЧЕСТВО>${item.count}</КОЛИЧЕСТВО>
 					<ЦЕНА>${item.good.price}</ЦЕНА>
-					<СУММА>${item.count * item.price}</СУММА>
+					<СУММА>${ item.count * item.good.price}</СУММА>
 				</Строка>`).join('') + 
 
 			`</Таблица>
