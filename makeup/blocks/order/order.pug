@@ -3,7 +3,7 @@ mixin order(orderData)
 		if orderData.length
 			.order__list
 				each item in orderData
-					.order__item(data-id=item.id)
+					.order__item(data-id=item._id)
 						.order__del &times;
 
 						.order__title 

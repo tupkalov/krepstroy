@@ -3,6 +3,7 @@ const 	className 		= 'order',
 		itemClassName 	= className + '__item',
 		priceClassName 	= className + '__price',
 		sumClassName 	= className + '__sum',
+		delClassName 	= className + '__del',
 
 		counterValueQuery = 'input[name$="[count]"]';
 
@@ -11,6 +12,31 @@ export class Order{
 
 	constructor (el) {
 		this.el = el;
+
+		$(el).on('counter', `.${itemClassName}`, event => {
+			let id = $(event.currentTarget).data('id'),
+				counter = event.originalEvent.counterValue;
+			if(counter > 0)
+				BASKET.add(id, event.originalEvent.counterValue);
+			else
+				BASKET.remove(id);
+
+			this.calc();
+
+		})
+
+		$(el).on('click', `.${delClassName}`, event => {
+			let $item = $(event.currentTarget).closest(`.${itemClassName}`),
+				id = $item.data('id');
+
+			BASKET.remove(id)
+				.then(() => {
+					$item.remove();
+					this.checkEmpty();
+					this.calc();
+				});
+		});
+
 		this.list = el.querySelector('.' + listClassName);
 		this.sumPrice = el.querySelector('.' + sumClassName + ' .' + priceClassName);
 		if(this.list){
@@ -20,6 +46,12 @@ export class Order{
 
 			this.calc();
 		}
+	}
+
+	checkEmpty () {
+		this.items = Array.from(this.list.querySelectorAll('.' + itemClassName));
+		if(this.items.length === 0)
+			location.reload();
 	}
 
 	calc () {

@@ -22,7 +22,7 @@ export class Counter{
 
 	decrement () {
 
-		this.input.value = this.value = Math.max(1, this.value - 1);
+		this.input.value = this.value = Math.max(0, this.value - 1);
 		this.trigger();
 	}
 
@@ -32,7 +32,8 @@ export class Counter{
 	}
 
 	trigger () {
-		let event = new Event('change', {"bubbles":true, "cancelable":true});
+		let event = new Event('counter', {"bubbles":true, "cancelable":true});
+		event.counterValue = this.value;
 		this.input.dispatchEvent(event);
 	}
 

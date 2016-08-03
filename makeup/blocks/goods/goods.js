@@ -11,6 +11,10 @@ export class Goods{
 
 	constructor (el) {
 		this.el = el;
+
+		$(el).on('counter',  `.${itemClass}`, event => {
+			event.currentTarget.setAttribute('data-counter', event.originalEvent.counterValue);
+		});
 		
 		$(el).on('click', `.${buttonClass}`, event => {
 			let $button = $(event.currentTarget),
@@ -21,7 +25,7 @@ export class Goods{
 			let promise;
 
 			if(!$good.hasClass(itemBuyedClass)){
-				let count = parseInt($good.find(`.${counterClass} input`).val());
+				let count = parseInt($good.data('counter') || 1);
 				promise = BASKET.add(id, count)
 					.then(() => 
 						$good.addClass(itemBuyedClass)

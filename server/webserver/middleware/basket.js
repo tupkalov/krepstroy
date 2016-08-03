@@ -83,7 +83,8 @@ let map = {
 		}
 
 		let good = basket.find(({_id}) => _id === id);
-		if(!good) res.sendJson();
+		if(!good) 
+			return res.sendJson();
 
 		let index = basket.indexOf(good);
 		basket.splice(index, 1);
