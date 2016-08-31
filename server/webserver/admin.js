@@ -30,7 +30,7 @@ module.exports = app => {
 		],
 		uploadHandler: (req, res, next) => {
 			penguin.fileManager.save(req.files.upload, (err, file) => {
-				res.send ("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(#{req.query.CKEditorFuncNum}, '/#{file.path}', 'Success!');</script>");
+				res.send (`<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(${req.query.CKEditorFuncNum}, '/${file.path}', 'Success!');</script>`);
 			})
 		}
 	})
