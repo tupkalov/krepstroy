@@ -6,6 +6,6 @@ mixin news(newsData)
 		)
 			.news__date #{item.date}
 			a.news__title(
-				href="/news/" + item.id + '/' + item.alias
+				href="/news#" + item.alias
 			) #{item.title}
 			.news__text #{item.short}
