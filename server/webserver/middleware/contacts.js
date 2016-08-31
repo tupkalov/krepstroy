@@ -6,7 +6,7 @@ router.get('/', function (req, res, next){
 	co(function* (){
 		let data = yield {
 			groups 		: App.mappers.getGroupsSidebar(),
-			contactsData: App.mappers.glo('contactsData')
+			contactsData: App.glo.contactsData_big
 		};
 
 		res.render('contacts', data);

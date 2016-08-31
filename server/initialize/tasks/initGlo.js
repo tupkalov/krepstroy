@@ -4,7 +4,10 @@ module.exports = function* (){
 		.then(
 			glos => {
 				let glo = {};
-				glos.forEach(item => (glo[item.name] = item.text));
+				glos.forEach(item => {
+					glo[item.name] = item.text
+					glo[item.name + "_big"] = item.bigtext
+				});
 				console.log('Glo complete!');
 				App.glo = glo;
 			}

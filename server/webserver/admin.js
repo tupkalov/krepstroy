@@ -27,7 +27,12 @@ module.exports = app => {
 				[ 'Новости', '/admin/news' ],
 				[ 'Общее', '/admin/glo' ],
 			] ]
-		]
+		],
+		uploadHandler: (req, res, next) => {
+			penguin.fileManager.save(req.files.upload, (err, file) => {
+				res.send ("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(#{req.query.CKEditorFuncNum}, '/#{file.path}', 'Success!');</script>");
+			})
+		}
 	})
 
 	admin.resLocals.statics.js.push('//cdn.ckeditor.com/4.4.4/standard/ckeditor.js')

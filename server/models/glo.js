@@ -7,9 +7,22 @@ const required = true,
 
 
 let schema = mongoose.Schema({
-	name 	: {type : String, required, $p :{display : 'e', label : "alias (Зарезервированные имена на сервере)"}},
+	name 	: {type : String, required, $p :{
+		display : 'e', 
+		label : "alias (Зарезервированные имена на сервере)"
+	}},
 	description : {type : String, $p : {label : "Описание"}},
-	text 	: {type : String, $p : {label : "Текст", display : 'e'}}
+	text 	: {type : String, $p : {
+		label : "Значение", 
+		display : 'e',
+	}},
+
+	bigtext 	: {type : String, $p : {
+		widget : 'textarea',
+		label : "Текст", 
+		display : 'e',
+	}},
+
 }, {collection : 'glo'})
 
 schema.virtual('$pTitle').get(function(){ return this.name })
