@@ -38,6 +38,7 @@ router.post('/send', function(req, res, next){
 			result = true;
 			resultMessage = "Сообщение отправлено";
 
+			req.session.basket = []
 		}
 
 		if(req.xhr){
